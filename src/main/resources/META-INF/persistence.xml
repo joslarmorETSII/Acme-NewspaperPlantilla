@@ -14,11 +14,11 @@
 	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	
-	<persistence-unit name="Acme-NewsPaper2.0">
+	<persistence-unit name="Acme-NewsPaperPlantilla">
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
-			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Acme-NewsPaper2.0" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/Acme-NewspaperPlantilla" />
 			<property name="javax.persistence.jdbc.user" value="acme-manager" />
 			<property name="javax.persistence.jdbc.password" value="ACME-M@n@ger-6874" />
 

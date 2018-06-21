@@ -17,7 +17,7 @@
 
 
 <div>
-	<img src="images/logo.png" height="200" width="450" alt="Acme NewsPaper2.0 Co., Inc." />
+	<img src="images/logo.png" height="200" width="450" alt="Acme NewsPaperPlantilla Co., Inc." />
 </div>
 
 <div>

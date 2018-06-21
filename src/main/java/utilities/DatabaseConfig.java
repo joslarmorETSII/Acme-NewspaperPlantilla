@@ -12,7 +12,7 @@ package utilities;
 
 public interface DatabaseConfig {
 
-	public final String	PersistenceUnit				= "Acme-NewsPaper2.0";
+	public final String	PersistenceUnit				= "Acme-NewsPaperPlantilla";
 
 	public final String	entitySpecificationFilename	= "./src/main/resources/PopulateDatabase.xml";
 	public final String	entityMapFilename			= "./src/main/resources/Entities.map";

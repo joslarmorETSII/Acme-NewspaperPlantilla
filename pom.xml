@@ -20,7 +20,7 @@
 	<!-- Artifact identification and properties -->
 
 	<groupId>Design-and-Testing</groupId>
-	<artifactId>Acme-NewsPaper2.0</artifactId>
+	<artifactId>Acme-NewsPaperPlantilla</artifactId>
 	<version>1.13</version>
 	<packaging>war</packaging>
 	
@@ -30,9 +30,9 @@
 
 	<!-- Indexing information -->
 
-	<name>Acme-NewsPaper2.0</name>
-	<url>http://www.acme-newspaper2.0.com</url>
-	<description>This is D&amp;T's acme newspaper 2.0.</description>
+	<name>Acme-NewsPaperPlantilla</name>
+	<url>http://www.acme-newspaperplantilla.com</url>
+	<description>This is D&amp;T's acme newspaper plantilla.</description>
 	
 	<!-- Build commands -->
 
