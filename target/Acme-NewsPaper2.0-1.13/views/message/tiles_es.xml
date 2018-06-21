@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+      
+<tiles-definitions>
+	
+	<definition name="message/list" extends="master.page">	
+		<put-attribute name="title" value="Listar mensajes" />
+		<put-attribute name="body" value="/views/message/list.jsp" />
+	</definition>
+	
+	<definition name="message/create" extends="master.page">	
+		<put-attribute name="title" value="Enviar mensaje" />
+		<put-attribute name="body" value="/views/message/create.jsp" />
+	</definition>
+	
+	<definition name="message/details" extends="master.page">	
+		<put-attribute name="title" value="Detalles" />
+		<put-attribute name="body" value="/views/message/details.jsp" />
+	</definition>
+	
+		<definition name="message/mover" extends="master.page">	
+		<put-attribute name="title" value="Mover" />
+		<put-attribute name="body" value="/views/message/mover.jsp" />
+	</definition>
+	
+</tiles-definitions>

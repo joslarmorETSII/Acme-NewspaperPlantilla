@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!--
+ * tiles.xml
+ *
+ * Copyright (C) 2017 Universidad de Sevilla
+ *
+ * The use of this project is hereby constrained to the conditions of the
+ * TDG Licence, a copy of which you may download from
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+
+    <definition name="newsPaper/list" extends="master.page">
+        <put-attribute name="title" value="List newsPaper" />
+        <put-attribute name="body" value="/views/newsPaper/list.jsp" />
+    </definition>
+
+    <definition name="newsPaper/edit" extends="master.page">
+        <put-attribute name="title" value="Edit newsPaper" />
+        <put-attribute name="body" value="/views/newsPaper/edit.jsp" />
+    </definition>
+
+    <definition name="newsPaper/display" extends="master.page">
+        <put-attribute name="title" value="Display newsPaper" />
+        <put-attribute name="body" value="/views/newsPaper/display.jsp" />
+    </definition>
+
+    <definition name="newsPaper/listNewsPaperCustomer" extends="master.page">
+        <put-attribute name="title" value="Subscribed newsPapers " />
+        <put-attribute name="body" value="/views/newsPaper/listNewsPaperCustomer.jsp" />
+    </definition>
+
+    <definition name="newsPaper/listNewsPaperPerVolume" extends="master.page">
+        <put-attribute name="title" value="List newsPapers per volume " />
+        <put-attribute name="body" value="/views/newsPaper/listNewsPaperPerVolume.jsp" />
+    </definition>
+
+    <definition name="newsPaper/listNewsPaperAdvertisement" extends="master.page">
+        <put-attribute name="title" value="List newsPapers " />
+        <put-attribute name="body" value="/views/newsPaper/listNewsPaperAdvertisement.jsp" />
+    </definition>
+
+</tiles-definitions>

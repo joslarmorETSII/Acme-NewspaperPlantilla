@@ -1,0 +1,1229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- 
+ * PopulateDatabase.xml
+ *
+ * Copyright (C) 2017 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+	">
+	
+	<!-- User accounts -->
+
+	<bean id="userAccount1" class="security.UserAccount">
+		<property name="username" value="administrator" />
+		<property name="password" value="200ceb26807d6bf99fd6f4f0d1ca54d4" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount2" class="security.UserAccount">
+		<property name="username" value="customer1" />
+		<property name="password" value="ffbc4675f864e0e9aab8bdf7a0437010" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="CUSTOMER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount3" class="security.UserAccount">
+		<property name="username" value="user1" />
+		<property name="password" value="24c9e15e52afc47c225b757e7bee1f9d" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount4" class="security.UserAccount">
+		<property name="username" value="user2" />
+		<property name="password" value="7e58d63b60197ceb55a1c487989a3720" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount5" class="security.UserAccount">
+		<property name="username" value="user3" />
+		<property name="password" value="92877af70a45fd6a2ed7fe81e1236b78" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount6" class="security.UserAccount">
+		<property name="username" value="user4" />
+		<property name="password" value="3f02ebe3d7929b091e3d8ccfde2f3bc6" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="USER" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="userAccount7" class="security.UserAccount">
+		<property name="username" value="agent1" />
+		<property name="password" value="83a87fd756ab57199c0bb6d5e11168cb" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="AGENT" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Admins -->
+
+	<bean id="administrator" class="domain.Administrator">
+		<property name="name" value="José Manuel"/>
+		<property name="surname" value="Lara Morilla"/>
+		<property name="email" value="joslarmor@alum.us.es"/>
+		<property name="phone" value="+34618030683"/>
+		<property name="postalAddresses" value="C\ Tarfia Bloque 7 Piso 6B"/>
+		<property name="userAccount" ref="userAccount1"/>
+		<property name="folders">
+			<list>
+				<ref bean="inbox1" />
+				<ref bean="outbox1" />
+				<ref bean="spambox1" />
+				<ref bean="trashbox1" />
+				<ref bean="notificationbox1"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Customers -->
+
+	<bean id="customer1" class="domain.Customer">
+		<property name="name" value="José Félix"/>
+		<property name="surname" value="Gómez Rodríguez"/>
+		<property name="email" value="josgomrod3@alum.us.es"/>
+		<property name="phone" value="+34695395229"/>
+		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
+		<property name="userAccount" ref="userAccount2"/>
+		<property name="subscriptionsToNewspapers">
+			<list>
+				<ref bean="subscribeNewsPaper1"/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="inbox4" />
+				<ref bean="outbox4" />
+				<ref bean="spambox4" />
+				<ref bean="trashbox4" />
+				<ref bean="notificationbox4"/>
+			</list>
+		</property>
+		<property name="subscriptionsToVolumes">
+			<list>
+				<ref bean="subscribeVolume1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- CreditCard -->
+
+	<bean id="creditCard1" class="domain.CreditCard">
+		<property name="holder" value="Holder 1" />
+		<property name="brand" value="visa" />
+		<property name="number" value="4539708415602051" />
+		<property name="expirationMonth" value="12" />
+		<property name="expirationYear" value="2018" />
+		<property name="cvv" value="243" />
+	</bean>
+
+	<bean id="creditCard2" class="domain.CreditCard">
+		<property name="holder" value="Holder 2" />
+		<property name="brand" value="visa" />
+		<property name="number" value="4785530860520625" />
+		<property name="expirationMonth" value="12" />
+		<property name="expirationYear" value="2018" />
+		<property name="cvv" value="123" />
+	</bean>
+
+	<bean id="creditCard3" class="domain.CreditCard">
+		<property name="holder" value="Holder 2" />
+		<property name="brand" value="visa" />
+		<property name="number" value="4785530860520625" />
+		<property name="expirationMonth" value="12" />
+		<property name="expirationYear" value="2018" />
+		<property name="cvv" value="123" />
+	</bean>
+
+	<bean id="creditCard4" class="domain.CreditCard">
+		<property name="holder" value="Holder 2" />
+		<property name="brand" value="visa" />
+		<property name="number" value="4785530860520625" />
+		<property name="expirationMonth" value="12" />
+		<property name="expirationYear" value="2018" />
+		<property name="cvv" value="123" />
+	</bean>
+
+	<bean id="creditCard5" class="domain.CreditCard">
+		<property name="holder" value="Holder 2" />
+		<property name="brand" value="visa" />
+		<property name="number" value="4785530860520625" />
+		<property name="expirationMonth" value="12" />
+		<property name="expirationYear" value="2018" />
+		<property name="cvv" value="123" />
+	</bean>
+
+	<bean id="creditCard6" class="domain.CreditCard">
+		<property name="holder" value="Holder 2" />
+		<property name="brand" value="visa" />
+		<property name="number" value="4785530860520625" />
+		<property name="expirationMonth" value="12" />
+		<property name="expirationYear" value="2018" />
+		<property name="cvv" value="123" />
+	</bean>
+
+	<!-- Users -->
+
+	<bean id="user1" class="domain.User">
+		<property name="name" value="Fulanita"/>
+		<property name="surname" value="Fulanita"/>
+		<property name="email" value="fulanita@alum.us.es"/>
+		<property name="phone" value="+34234562334"/>
+		<property name="postalAddresses" value="reina mercedes"/>
+		<property name="userAccount" ref="userAccount3"/>
+
+		<property name="chirps">
+			<list>
+				<ref bean="chirp1"/>
+			</list>
+		</property>
+		<property name="newsPapers">
+			<list>
+				<ref bean="newsPaper1"/>
+				<ref bean="newsPaper3"/>
+				<ref bean="newsPaper4"/>
+			</list>
+		</property>
+		<property name="followings">
+			<list>
+				<ref bean="following1"/>
+			</list>
+		</property>
+        <property name="followers">
+            <list>
+            </list>
+        </property>
+		<property name="folders">
+			<list>
+				<ref bean="inbox2" />
+				<ref bean="outbox2" />
+				<ref bean="spambox2" />
+				<ref bean="trashbox2" />
+				<ref bean="notificationbox2"/>
+			</list>
+		</property>
+
+		<property name="volumes">
+			<list>
+				<ref bean="volume1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="user2" class="domain.User">
+		<property name="name" value="alejandro"/>
+		<property name="surname" value="alejandro"/>
+		<property name="email" value="alejandro@alum.us.es"/>
+		<property name="phone" value="+34666666666"/>
+		<property name="postalAddresses" value="reina mercedes"/>
+		<property name="userAccount" ref="userAccount4"/>
+
+		<property name="chirps">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="newsPapers">
+			<list>
+				<null/>
+			</list>
+		</property>
+
+		<property name="followings">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="inbox3" />
+				<ref bean="outbox3" />
+				<ref bean="spambox3" />
+				<ref bean="trashbox3" />
+				<ref bean="notificationbox3"/>
+			</list>
+		</property>
+		<property name="volumes">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Agents -->
+
+	<bean id="agent1" class="domain.Agent">
+		<property name="name" value="Agent1"/>
+		<property name="surname" value="AgentSurname"/>
+		<property name="email" value="josgomrod3@alum.us.es"/>
+		<property name="phone" value="+34123456789"/>
+		<property name="postalAddresses" value="C\ Reina Mercedes Bloque 25"/>
+		<property name="userAccount" ref="userAccount7"/>
+		<property name="advertisements">
+			<list>
+				<ref bean="advertisement1"/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="inbox5" />
+				<ref bean="outbox5" />
+				<ref bean="spambox5" />
+				<ref bean="trashbox5" />
+				<ref bean="notificationbox5"/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Advertisement -->
+
+	<bean id="advertisement1" class="domain.Advertisement">
+		<property name="title" value="CocaCola"/>
+		<property name="banner" value="http://media.worldsbestbanners.com/catalog/category/Advertisement_Banners.jpg"/>
+		<property name="targetPage" value="http://worldsbestbanners.com/view-all-pre-designed-banners/advertisement-banners.html"/>
+		<property name="taboo" value="false"/>
+		<property name="agent" ref="agent1" />
+		<property name="creditCard" ref="creditCard6"/>
+		<property name="newsPaper" ref="newsPaper1"/>
+	</bean>
+
+	<bean id="advertisement2" class="domain.Advertisement">
+		<property name="title" value="Starbucks"/>
+		<property name="banner" value="https://mir-s3-cdn-cf.behance.net/project_modules/1400/fc01fd44198707.580b7ef556450.jpg"/>
+		<property name="targetPage" value="https://www.behance.net/gallery/44198707/Starbucks-Pumpkin-Spice-Latte-Spoof-Advertisement"/>
+		<property name="taboo" value="false"/>
+		<property name="agent" ref="agent1" />
+		<property name="creditCard" ref="creditCard3"/>
+		<property name="newsPaper" ref="newsPaper1"/>
+	</bean>
+
+	<bean id="advertisement3" class="domain.Advertisement">
+		<property name="title" value="SPRUDGE"/>
+		<property name="banner" value="http://331mrnu3ylm2k3db3s1xd1hg.wpengine.netdna-cdn.com/wp-content/uploads/2016/06/PacificFoods3July2016.jpg"/>
+		<property name="targetPage" value="http://sprudge.com/advertise-2"/>
+		<property name="taboo" value="false"/>
+		<property name="agent" ref="agent1" />
+		<property name="creditCard" ref="creditCard4"/>
+		<property name="newsPaper" ref="newsPaper2"/>
+	</bean>
+
+	<bean id="advertisement4" class="domain.Advertisement">
+		<property name="title" value="Paris"/>
+		<property name="banner" value="http://a4.images.mywebroom.com/image/upload/f_auto,q_90/v1407185403/8732-collection-127-image_2-oh-paris-banner.jpg"/>
+		<property name="targetPage" value="http://www.mywebroom.com/home-collections/oh-paris/"/>
+		<property name="taboo" value="false"/>
+		<property name="agent" ref="agent1" />
+		<property name="creditCard" ref="creditCard5"/>
+		<property name="newsPaper" ref="newsPaper3"/>
+	</bean>
+
+	<!-- Chirps -->
+
+	<bean id="chirp1" class="domain.Chirp">
+	<property name="title" value="Primer chirp"/>
+	<property name="moment" value="01/04/2018 11:00"/>
+	<property name="description" value="Esto es un chirp de prueba"/>
+	<property name="posted" value="false"/>
+	<property name="taboo" value="false" />
+	<property name="user" ref="user1"/>
+	</bean>
+
+	<!-- NewsPapers -->
+
+	<bean id="newsPaper1" class="domain.NewsPaper">
+		<property name="title" value="The etsii Post"/>
+		<property name="publicationDate" value="01/04/2018"/>
+		<property name="description" value="News about computer, network, software, software engineering, IT."/>
+		<property name="picture" value="https://thumb1.shutterstock.com/display_pic_with_logo/2679097/485390743/stock-vector-old-newspaper-vintage-design-retro-background-vector-template-with-text-and-images-485390743.jpg"/>
+		<property name="published" value="true"/>
+		<property name="taboo" value="false"/>
+		<property name="modePrivate" value="false"/>
+		<property name="publisher" ref="user1"/>
+
+		<property name="articles">
+			<list>
+				<ref bean="article1"/>
+ 			</list>
+		</property>
+		<property name="subscriptions">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="advertisements">
+			<list>
+				<ref bean="advertisement1"/>
+				<ref bean="advertisement2"/>
+			</list>
+		</property>
+		<property name="volumes">
+			<list>
+				<ref bean="volume1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="newsPaper2" class="domain.NewsPaper">
+		<property name="title" value="The young entrepreneur"/>
+		<property name="publicationDate" value="01/04/2018"/>
+		<property name="description" value="Get the small business news stories and updates from Entrepreneurs"/>
+		<property name="picture" value="http://i.dailymail.co.uk/i/newpix/2018/04/24/17/4B50DB5E00000578-5635119-Nolin_Jean_Baptiste_LE_GLOBE_TERRESTRE_REPRESENT_EN_DEUX_PLANS_H-a-49_1524586336734.jpg"/>
+		<property name="published" value="true"/>
+		<property name="taboo" value="false"/>
+		<property name="modePrivate" value="true"/>
+		<property name="publisher" ref="user1"/>
+
+		<property name="articles">
+			<list>
+				<ref bean="article4"/>
+				<ref bean="article5"/>
+			</list>
+		</property>
+		<property name="subscriptions">
+			<list>
+				<ref bean="subscribeNewsPaper1"/>
+			</list>
+		</property>
+		<property name="advertisements">
+			<list>
+				<ref bean="advertisement3"/>
+			</list>
+		</property>
+		<property name="volumes">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="newsPaper3" class="domain.NewsPaper">
+		<property name="title" value="Daily News"/>
+		<property name="publicationDate" value="01/04/2018"/>
+		<property name="description" value="The daily news is a newspaper based in Spain, Sevilla. Coverage, Technology, sports, entertainment news, celebrity gossip..."/>
+		<property name="picture" value="http://www.stl-horizon.com/wp-content/uploads/2017/05/technology-591103f20ff18.jpg"/>
+		<property name="published" value="true"/>
+		<property name="taboo" value="true"/>
+		<property name="modePrivate" value="true"/>
+		<property name="publisher" ref="user1"/>
+
+		<property name="articles">
+			<list>
+				<ref bean="article2"/>
+				<ref bean="article3" />
+			</list>
+		</property>
+		<property name="subscriptions">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="advertisements">
+			<list>
+				<ref bean="advertisement4"/>
+			</list>
+		</property>
+		<property name="volumes">
+			<list>
+				<null />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="newsPaper4" class="domain.NewsPaper">
+		<property name="title" value="News Timer"/>
+		<property name="publicationDate" value="01/04/2018"/>
+		<property name="description" value="The daily news is a newspaper based in Spain, Sevilla. Coverage, Technology, sports, entertainment news, celebrity gossip..."/>
+		<property name="picture" value="http://www.stl-horizon.com/wp-content/uploads/2017/05/technology-591103f20ff18.jpg"/>
+		<property name="published" value="false"/>
+		<property name="taboo" value="false"/>
+		<property name="modePrivate" value="false"/>
+		<property name="publisher" ref="user1"/>
+
+		<property name="articles">
+			<list>
+				<ref bean="article6"/>
+			</list>
+		</property>
+		<property name="subscriptions">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="advertisements">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="volumes">
+			<list>
+				<null />
+			</list>
+		</property>
+	</bean>
+	<!-- Followers -->
+
+	<bean id="follower1" class="domain.User">
+		<property name="name" value="User follower"/>
+		<property name="surname" value="Surname follower"/>
+		<property name="email" value="follower@alum.us.es"/>
+		<property name="phone" value="+34666666666"/>
+		<property name="postalAddresses" value="Reina mercedes"/>
+		<property name="userAccount" ref="userAccount5"/>
+
+		<property name="chirps">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="newsPapers">
+			<list>
+				<null/>
+			</list>
+		</property>
+
+		<property name="followings">
+			<list>
+				<ref bean="user1"/>
+			</list>
+		</property>
+		<property name="folders">
+			<list>
+				<ref bean="inbox6" />
+				<ref bean="outbox6" />
+				<ref bean="spambox6" />
+				<ref bean="trashbox6" />
+				<ref bean="notificationbox6"/>
+			</list>
+		</property>
+		<property name="volumes">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Followings -->
+
+	<bean id="following1" class="domain.User">
+		<property name="name" value="User following"/>
+		<property name="surname" value="Surname following"/>
+		<property name="email" value="following@alum.us.es"/>
+		<property name="phone" value="+34666666666"/>
+		<property name="postalAddresses" value="Reina mercedes"/>
+		<property name="userAccount" ref="userAccount6"/>
+
+		<property name="chirps">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="newsPapers">
+			<list>
+				<null/>
+			</list>
+		</property>
+
+		<property name="followings">
+			<list>
+				<null/>
+			</list>
+		</property>
+        <property name="followers">
+            <list>
+            </list>
+        </property>
+		<property name="folders">
+			<list>
+				<ref bean="inbox7" />
+				<ref bean="outbox7" />
+				<ref bean="spambox7" />
+				<ref bean="trashbox7" />
+				<ref bean="notificationbox7"/>
+				<ref bean="folderTest"/>
+			</list>
+		</property>
+		<property name="volumes">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
+
+	<!-- Articles -->
+
+	<bean id="article1" class="domain.Article">
+	<property name="title" value="The future of VR goes beyond sight and sound."/>
+	<property name="moment" value="01/04/2018"/>
+	<property name="summary" value="Disney's haptic VR jacket lets you feel snowball impacts and snakes slithering"/>
+	<property name="body" value="Virtual reality is a gateway to powerful experiences. Strap on a pair of VR goggles, look around, and the scene you see will adjust, in real time, to match your gaze. But the technology is a visual one. Virtual reality doesn't include touch, although there are controllers that provide hand presence, allowing you to manipulate objects in the virtual world, or shoot a simulated gun. So while VR today could simulate a Westworld like setting, you're not going to be actually feeling the hug of a cowboy-robot on your body while using any of the major platforms at least not for a while.
+The Force Jacket, a garment from Disney Research, aims to address that gap. Made out of a converted life jacket, the prototype uses embedded airbags that inflate, deflate, or even vibrate to literally give its wearer a feeling of being touched. When coupled with VR software, the setup can simulate something bizarre a snake slithering on you or more pedestrian: getting hit by a snowball. In brief, the sensation of touch you feel on your actual body can match what you see in a virtual one. (The device is the result of a research project, so these lifejacket garments aren't exactly on sale on Amazon. It’s also not the first research to focus on incorporating haptics into VR.)"/>
+	<property name="finalMode" value="true"/>
+	<property name="taboo" value="false"/>
+	<property name="newsPaper" ref="newsPaper1" />
+		<property name="followUps">
+			<list>
+				<ref bean="followUp2"/>
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+				<ref bean="picture7"/>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="article2" class="domain.Article">
+		<property name="title" value="House prices rising faster"/>
+		<property name="moment" value="01/04/2018 23:00"/>
+		<property name="summary" value="ONS report reveals how house prices compare to local wages "/>
+		<property name="body" value="How expensive are homes near you? Official figures reveal properties now cost 7.8 times wages-this map lets you check your area"/>
+		<property name="finalMode" value="true"/>
+		<property name="taboo" value="false"/>
+		<property name="newsPaper" ref="newsPaper3" />
+		<property name="followUps">
+			<list>
+				<ref bean="followUp1" />
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+				<ref bean="picture3" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="article3" class="domain.Article">
+		<property name="title" value="Investing for income"/>
+		<property name="moment" value="01/04/2018 23:00"/>
+		<property name="summary" value="How to invest for income: What you need to know about shares, bonds and why dividends matter"/>
+		<property name="body" value="Investing for income can be about harnessing the power of dividends to boost your investment returns, or using the stock market and bonds to increase the money you have to spend.
+		In our new series on investing for income, James Norton, senior investment planner at Vanguard, will explain what you need to know, the investments to look for and the pitfalls to avoid."/>
+		<property name="finalMode" value="true"/>
+		<property name="taboo" value="true"/>
+		<property name="newsPaper" ref="newsPaper3" />
+		<property name="followUps">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+				<ref bean="picture1" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="article4" class="domain.Article">
+		<property name="title" value=" National Geographic"/>
+		<property name="moment" value="01/04/2018 23:00"/>
+		<property name="summary" value="Photographer Karen Larson took this amazing image of a mother polar bear and her two cubs"/>
+		<property name="body" value="From a leaping leopard to a paddling polar bear: Jaw-dropping nature photographs submitted to the 2018 National Geographic Travel Photographer of the Year Contest. Mammals are among the most adaptable animals on the planet.
+They are found on every continent and in every ocean, and range in size from tiny bumblebee bats to enormous blue whales. One reason for their success is the way they move. Mammals as a group use every possible form of locomotion. Terrestrial species walk, run, jump, climb, hop, swing, dig, and burrow. Aquatic ones swim, shuffle, and dive. A few even fly.
+Diet and behavior vary, too. Many carnivores, for example, are top predators that live generally solitary lives. These include jaguars, tigers, and polar bears. By contrast, lions, otters, wolves, and dolphins live in family groups. Even more social are some of the herbivores, especially hoofed animals like deer and zebra"/>
+		<property name="finalMode" value="true"/>
+		<property name="taboo" value="false"/>
+		<property name="newsPaper" ref="newsPaper2" />
+		<property name="followUps">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+				<ref bean="picture4" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="article5" class="domain.Article">
+		<property name="title" value="El museo como centro educativo"/>
+		<property name="moment" value="01/04/2018 23:00"/>
+		<property name="summary" value="El director del Reina Sofía, el valenciano Manel Borja-Villel, defiende que la enseñanza del arte debería empezar por lo contemporáneo"/>
+		<property name="body" value="La función educativa de los museos no es algo nuevo. El primer director del MOMA de Nueva York, Alfred Barr, ya advertía en 1929, antes incluso de su apertura, que el museo “funcionará exclusivamente como una institución educativa”. Y un año después abundaba en esta idea al afirmar que el nuevo museo “poseerá un inestimable valor educativo, tanto para pintores en busca de ánimo e inspiración, como para estudiantes de cultura contemporánea e Historia del Arte, críticos en busca de cánones comparativos y público aficionado a contemplar cuadros, en general”."/>
+		<property name="finalMode" value="true"/>
+		<property name="taboo" value="false"/>
+		<property name="newsPaper" ref="newsPaper2" />
+		<property name="followUps">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+				<ref bean="picture6" />
+			</list>
+		</property>
+	</bean>
+	<bean id="article6" class="domain.Article">
+		<property name="title" value="Deep South USA Music Triangle"/>
+		<property name="moment" value="01/04/2018 23:00"/>
+		<property name="summary" value="Soak up the atmosphere of three music cities: Nashville is country, Tupelo is the birthplace of Elvis and Memphis has soul."/>
+		<property name="body" value="Nashville, Tennessee
+Music City USA is still the capital of country music and bars and honky-tonks line downtown Broadway. There’s good music in the clubs and at the famous Grand Ole Opry. Elvis appeared on stage here early in his career and made many of his famous recordings at RCA studios.
+For more than 40 years, The Station Inn has presented great bluegrass, roots and Americana music. It’s a small unassuming venue in the heart of Nashville, an area known as the Gulch.  Many of the world’s most successful musicians have played at here, including Bill Monroe, Vince Gill, Alison Krauss and John Prine. What’s great is that it sells beer and pizza at pub prices and the admission prices are low."/>
+		<property name="finalMode" value="true"/>
+		<property name="taboo" value="true"/>
+		<property name="newsPaper" ref="newsPaper4" />
+		<property name="followUps">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="pictures">
+			<list>
+				<ref bean="picture8" />
+			</list>
+		</property>
+	</bean>
+	<!-- FollowUps -->
+
+	<bean id="followUp1" class="domain.FollowUp">
+		<property name="title" value="Titulo del articulo2"/>
+		<property name="moment" value="01/04/2018 23:00"/>
+		<property name="summary" value="Summary del articulo"/>
+		<property name="text" value="Cuerpo del articulo"/>
+		<property name="pictures">
+			<list>
+				<ref bean="picture2" />
+			</list>
+		</property>
+		<property name="article" ref="article2" />
+	</bean>
+
+	<bean id="followUp2" class="domain.FollowUp">
+		<property name="title" value="Virtual reality surgery lets trainee doctors practise operations"/>
+		<property name="moment" value="01/04/2018 23:00"/>
+		<property name="summary" value="A virtual reality simulator for training junior surgeons seems to make them better equipped to cut open real patients"/>
+		<property name="text" value="Osso VR is the leading, validated virtual reality surgical training platform designed for surgeons, sales teams, and hospital staff of all skill levels. Our product offers highly realistic hand-based interactions in an immersive training environments that contain the latest, cutting edge procedures and technology.
+Our award-winning training solutions are results-driven, allowing teams and individuals to not only train on the latest in medical device technology, but objectively measure their performance through our proprietary analytics platform and dashboards.
+The Osso VR team is currently focused on solving training gaps for orthopedic and spine therapies, but is also expanding into other specialties and procedures."/>
+		<property name="pictures">
+			<list>
+				<null />
+			</list>
+		</property>
+		<property name="article" ref="article1" />
+	</bean>
+
+	<!-- Picture -->
+
+	<bean id="picture1" class="domain.Picture">
+		<property name="url" value="https://www.africabusinessclassroom.com/wp-content/uploads/2015/07/investment-1.jpg"/>
+		<property name="article" ref="article3"/>
+		<property name="followUp"> <null /></property>
+	</bean>
+
+	<bean id="picture2" class="domain.Picture">
+		<property name="url" value="http://www.imagen.com"/>
+		<property name="article" ><null/></property>
+		<property name="followUp" ref="followUp1"/>
+	</bean>
+
+	<bean id="picture3" class="domain.Picture">
+		<property name="url" value="http://i.dailymail.co.uk/i/newpix/2018/04/24/17/4B50DB5300000578-5635119-Isidore_of_Seville_ETYMOLOGIAE_AUGSBURG_G_NTHER_ZAINER_19_NOVEMB-a-52_1524586336782.jpg"/>
+		<property name="article" ref="article2"/>
+		<property name="followUp"> <null /></property>
+	</bean>
+
+	<bean id="picture4" class="domain.Picture">
+		<property name="url" value="http://i.dailymail.co.uk/i/newpix/2018/04/26/12/4B9304F200000578-0-image-a-23_1524742867188.jpg"/>
+		<property name="article" ref="article4"/>
+		<property name="followUp"> <null /></property>
+	</bean>
+
+	<bean id="picture5" class="domain.Picture">
+		<property name="url" value="http://www.hdfondos.eu/pictures/2013/0324/2/animals-national-geographic-baby-wolf-images-222665.jpg"/>
+		<property name="article" ref="article4"/>
+		<property name="followUp"> <null /></property>
+	</bean>
+
+	<bean id="picture6" class="domain.Picture">
+		<property name="url" value="https://elpais.com/ccaa/imagenes/2018/04/27/valencia/1524823086_556001_1524823603_noticia_grande.jpg"/>
+		<property name="article" ref="article5"/>
+		<property name="followUp"> <null /></property>
+	</bean>
+    <bean id="picture7" class="domain.Picture">
+        <property name="url" value="https://i.ytimg.com/vi/6kLfxbP2IPk/hqdefault.jpg"/>
+        <property name="article" ref="article1"/>
+        <property name="followUp"> <null /></property>
+    </bean>
+	<bean id="picture8" class="domain.Picture">
+		<property name="url" value="http://www.thetravelmagazine.net/wp-content/uploads/The-Station-Inn.jpg"/>
+		<property name="article" ref="article6"/>
+		<property name="followUp"> <null /></property>
+	</bean>
+	<bean id="picture9" class="domain.Picture">
+		<property name="url" value="https://d1o50x50snmhul.cloudfront.net/wp-content/uploads/2018/03/03091436/vr-screenshot-6_preview.jpg"/>
+		<property name="article"> <null /></property>
+		<property name="followUp" ref="followUp2"/>
+	</bean>
+
+	<!-- Volume -->
+	<bean id="volume1" class="domain.Volume">
+		<property name="title" value="Title volume1"/>
+		<property name="description" value="Description volume1"/>
+		<property name="anyo" value="2018" />
+		<property name="user" ref ="user1" />
+		<property name="subscriptionVolumes">
+			<list>
+				<ref bean="subscribeVolume1" />
+			</list>
+		</property>
+		<property name="newsPapersVolume">
+			<list>
+				<ref bean="newsPaper1" />
+			</list>
+		</property>
+	</bean>
+
+	<!-- Configuration -->
+
+	<bean id="configuration1" class="domain.Configuration">
+		<property name="name" value="Interesting NewsPaper" />
+		<property name="banner"
+				  value="http://westernpulp.com/images/uploads/main/news-banner.jpg" />
+		<property name="englishWelcome"
+				  value="Your web of NewsPaper!" />
+		<property name="spanishWelcome"
+				  value="Tu Página de revistas" />
+		<property name="tabooWords">
+		<list>
+			<value>viagra</value>
+			<value>cialis</value>
+			<value>sex</value>
+			<value>sexo</value>
+		</list>
+		</property>
+	</bean>
+
+	<!-- Folders -->
+
+	<bean id="inbox1" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+		<property name="actor" ref="administrator" />
+	</bean>
+
+	<bean id="outbox1" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="actor" ref="administrator" />
+	</bean>
+
+	<bean id="spambox1" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="administrator" />
+	</bean>
+
+	<bean id="trashbox1" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="administrator" />
+	</bean>
+
+	<bean id="notificationbox1" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="administrator" />
+	</bean>
+
+
+	<bean id="inbox2" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="user1" />
+	</bean>
+
+	<bean id="outbox2" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+		<property name="actor" ref="user1" />
+	</bean>
+
+	<bean id="spambox2" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="user1" />
+	</bean>
+
+	<bean id="trashbox2" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="user1" />
+	</bean>
+
+	<bean id="notificationbox2" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="user1" />
+	</bean>
+
+	<bean id="inbox3" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="user2" />
+	</bean>
+
+	<bean id="outbox3" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="user2" />
+	</bean>
+
+	<bean id="spambox3" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="user2" />
+	</bean>
+
+	<bean id="trashbox3" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="user2" />
+	</bean>
+
+	<bean id="notificationbox3" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="user2" />
+	</bean>
+
+	<bean id="inbox4" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="customer1" />
+	</bean>
+
+	<bean id="outbox4" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="customer1" />
+	</bean>
+
+	<bean id="spambox4" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="customer1" />
+	</bean>
+
+	<bean id="trashbox4" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="customer1" />
+	</bean>
+
+	<bean id="notificationbox4" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="customer1" />
+	</bean>
+
+	<bean id="inbox5" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="agent1" />
+	</bean>
+
+	<bean id="outbox5" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="agent1" />
+	</bean>
+
+	<bean id="spambox5" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="agent1" />
+	</bean>
+
+	<bean id="trashbox5" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="agent1" />
+	</bean>
+
+	<bean id="notificationbox5" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="agent1" />
+	</bean>
+
+	<bean id="inbox6" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="follower1" />
+	</bean>
+
+	<bean id="outbox6" class="domain.Folder">
+	<property name="name" value="outbox" />
+	<property name="system" value="true" />
+	<property name="messages">
+		<list>
+		</list>
+	</property>
+	<property name="actor" ref="follower1" />
+	</bean>
+
+	<bean id="spambox6" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="follower1" />
+	</bean>
+
+	<bean id="trashbox6" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="follower1" />
+	</bean>
+
+	<bean id="notificationbox6" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="follower1" />
+	</bean>
+
+	<bean id="inbox7" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="following1" />
+	</bean>
+	<bean id="outbox7" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+			</list>
+		</property>
+		<property name="actor" ref="following1" />
+	</bean>
+
+	<bean id="spambox7" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="following1" />
+	</bean>
+
+	<bean id="trashbox7" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="following1" />
+	</bean>
+
+	<bean id="notificationbox7" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="following1" />
+	</bean>
+
+	<bean id="folderTest" class="domain.Folder">
+		<property name="name" value="MyFolder" />
+		<property name="system" value="false" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="following1" />
+	</bean>
+
+
+	<!-- SubscribeVolume -->
+	<bean id="subscribeVolume1" class="domain.SubscribeVolume">
+		<property name="creditCard" ref="creditCard1"/>
+		<property name="moment" value="01/04/2018 11:00"/>
+		<property name="customer" ref="customer1"/>
+		<property name="volume" ref="volume1"/>
+	</bean>
+
+	<!-- SubscribeNewsPaper -->
+	<bean id="subscribeNewsPaper1" class="domain.SubscribeNewsPaper">
+		<property name="creditCard" ref="creditCard2"/>
+		<property name="moment" value="01/04/2018 11:00"/>
+		<property name="customer" ref="customer1"/>
+		<property name="newsPaper" ref="newsPaper2"/>
+	</bean>
+
+	<!-- Message -->
+	<bean id="message1" class="domain.Message" >
+		<property name="moment" value="2018/03/20 10:00" />
+		<property name="subject" value="Tutoria" />
+		<property name="body" value="Hola, me gustaria concertar una tutoria para la revision del ejercicio. Un saludo" />
+		<property name="priority" value="LOW" />
+		<property name="folder" ref="outbox2"/>
+		<property name="actorReceivers" >
+			<list>
+				<ref bean="administrator"/>
+			</list>
+		</property>
+		<property name="actorSender" ref="user1" />
+	</bean>
+
+	<bean id="message2" class="domain.Message" >
+		<property name="moment" value="2018/03/20 10:00" />
+		<property name="subject" value="Welcome" />
+		<property name="body" value="Welcome to Acme newspaper2.0" />
+		<property name="priority" value="LOW" />
+		<property name="folder" ref="notificationbox1"/>
+		<property name="actorReceivers" >
+			<list>
+				<ref bean="user2"/>
+			</list>
+		</property>
+		<property name="actorSender" ref="administrator" />
+	</bean>
+
+</beans>
