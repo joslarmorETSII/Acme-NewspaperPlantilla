@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!-- 
+ * tiles_es.xml
+ *
+ * Copyright (C) 2017 Universidad de Sevilla
+ * 
+ * The use of this project is hereby constrained to the conditions of the 
+ * TDG Licence, a copy of which you may download from 
+ * http://www.tdg-seville.info/License.html
+ -->
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+      
+<tiles-definitions>
+
+	<definition name="volume/list" extends="master.page">
+		<put-attribute name="title" value="Lista de volumenes" />
+		<put-attribute name="body" value="/views/volume/list.jsp" />
+	</definition>
+	<definition name="volume/edit" extends="master.page">
+		<put-attribute name="title" value="Edicion de volumenes" />
+		<put-attribute name="body" value="/views/volume/edit.jsp" />
+	</definition>
+	<definition name="volume/addNewsPaper" extends="master.page">
+		<put-attribute name="title" value="Añadir newsPapers" />
+		<put-attribute name="body" value="/views/volume/addNewsPaper.jsp" />
+	</definition>
+	<definition name="volume/removeNewsPaper" extends="master.page">
+		<put-attribute name="title" value="Quitar revistas" />
+		<put-attribute name="body" value="/views/volume/removeNewsPaper.jsp" />
+	</definition>
+	<definition name="volume/listSubscribedVolumes" extends="master.page">
+		<put-attribute name="title" value="Lista de volumenes suscritos" />
+		<put-attribute name="body" value="/views/volume/listSubscribedVolumes.jsp" />
+	</definition>
+	<definition name="volume/listVolumesToSubscribe" extends="master.page">
+		<put-attribute name="title" value="Lista de volumenes para suscribirse" />
+		<put-attribute name="body" value="/views/volume/listVolumesToSubscribe.jsp" />
+	</definition>
+</tiles-definitions>
