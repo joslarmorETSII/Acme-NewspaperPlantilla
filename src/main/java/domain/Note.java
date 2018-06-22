@@ -29,10 +29,10 @@ public class Note extends DomainEntity{
     private String description;
     private Integer gauge;
     private Date displayMoment;
+    private Boolean finalMode;
 
     @Column(unique = true)
-    @NotBlank
-    @Pattern(regexp = "\\d{2}-\\d{2}-\\d{2}")
+    @Pattern(regexp = "\\d{2}-\\d{2}-\\d{2}-\\w{2}") //
     public String getTicker() {
         return ticker;
     }
@@ -70,6 +70,7 @@ public class Note extends DomainEntity{
         this.gauge = gauge;
     }
 
+    @NotNull
     @Future
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
@@ -81,11 +82,20 @@ public class Note extends DomainEntity{
         this.displayMoment = displayMoment;
     }
 
+    public Boolean getFinalMode() {
+        return finalMode;
+    }
+
+    public void setFinalMode(Boolean finalMode) {
+        this.finalMode = finalMode;
+    }
+
     // Relationships ----------------------------------------------------------
     private Administrator administrator;
     private NewsPaper newsPaper;
 
     @Valid
+    @NotNull
     @ManyToOne(optional = false)
     public Administrator getAdministrator() {
         return administrator;
@@ -96,7 +106,7 @@ public class Note extends DomainEntity{
     }
 
     @Valid
-    @ManyToOne(optional = false)
+    @ManyToOne
     public NewsPaper getNewsPaper() {
         return newsPaper;
     }

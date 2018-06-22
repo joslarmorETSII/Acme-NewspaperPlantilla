@@ -109,6 +109,8 @@ NewsPaper extends DomainEntity {
     private Collection<SubscribeNewsPaper> subscriptions;
     private Collection<Advertisement> advertisements;
     private Collection<Volume> volumes;
+    private Collection<Note> notes;
+
 
     @Valid
     @NotNull
@@ -161,5 +163,16 @@ NewsPaper extends DomainEntity {
 
     public void setVolumes(Collection<Volume> volumes) {
         this.volumes = volumes;
+    }
+
+    @NotNull
+    @Valid
+    @OneToMany(mappedBy = "newsPaper")
+    public Collection<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(Collection<Note> notes) {
+        this.notes = notes;
     }
 }

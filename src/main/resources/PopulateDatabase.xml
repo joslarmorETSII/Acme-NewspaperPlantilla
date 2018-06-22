@@ -15,7 +15,7 @@
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 	">
-	
+
 	<!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
@@ -102,6 +102,18 @@
 		</property>
 	</bean>
 
+	<bean id="userAccount8" class="security.UserAccount">
+		<property name="username" value="admin2" />
+		<property name="password" value="c84258e9c39059a89ab77d846ddab909" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
 	<!-- Admins -->
 
 	<bean id="administrator" class="domain.Administrator">
@@ -120,8 +132,35 @@
 				<ref bean="notificationbox1"/>
 			</list>
 		</property>
+		<property name="notes">
+			<list>
+				<ref bean="note1"/>
+			</list>
+		</property>
 	</bean>
 
+	<bean id="administrator2" class="domain.Administrator">
+		<property name="name" value="Yassine"/>
+		<property name="surname" value="Taziny"/>
+		<property name="email" value="yastaz1@alum.us.es"/>
+		<property name="phone" value="+34666777333"/>
+		<property name="postalAddresses" value="C\ Centro Bloque 70 Piso 6B"/>
+		<property name="userAccount" ref="userAccount8"/>
+		<property name="folders">
+			<list>
+				<ref bean="inbox0" />
+				<ref bean="outbox0" />
+				<ref bean="spambox0" />
+				<ref bean="trashbox0" />
+				<ref bean="notificationbox0"/>
+			</list>
+		</property>
+		<property name="notes">
+			<list>
+				<null/>
+			</list>
+		</property>
+	</bean>
 	<!-- Customers -->
 
 	<bean id="customer1" class="domain.Customer">
@@ -407,6 +446,11 @@
 				<ref bean="volume1" />
 			</list>
 		</property>
+		<property name="notes">
+			<list>
+				<ref bean="note1"/>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="newsPaper2" class="domain.NewsPaper">
@@ -436,6 +480,11 @@
 			</list>
 		</property>
 		<property name="volumes">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="notes">
 			<list>
 				<null/>
 			</list>
@@ -473,6 +522,11 @@
 				<null />
 			</list>
 		</property>
+		<property name="notes">
+			<list>
+				<null/>
+			</list>
+		</property>
 	</bean>
 
 	<bean id="newsPaper4" class="domain.NewsPaper">
@@ -503,6 +557,11 @@
 		<property name="volumes">
 			<list>
 				<null />
+			</list>
+		</property>
+		<property name="notes">
+			<list>
+				<null/>
 			</list>
 		</property>
 	</bean>
@@ -545,7 +604,8 @@
 			<list>
 				<null/>
 			</list>
-		</property>
+	</property>
+
 	</bean>
 
 	<!-- Followings -->
@@ -843,6 +903,53 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 	</bean>
 
 	<!-- Folders -->
+
+	<bean id="inbox0" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="administrator2" />
+	</bean>
+
+	<bean id="outbox0" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="actor" ref="administrator2" />
+	</bean>
+
+	<bean id="spambox0" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="administrator2" />
+	</bean>
+
+	<bean id="trashbox0" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="administrator2" />
+	</bean>
+
+	<bean id="notificationbox0" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="administrator2" />
+	</bean>
 
 	<bean id="inbox1" class="domain.Folder">
 		<property name="name" value="inbox" />
@@ -1225,5 +1332,16 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		</property>
 		<property name="actorSender" ref="administrator" />
 	</bean>
+
+	<bean id="note1" class="domain.Note">
+		<property name="ticker" value="18-12-20-UP"/>
+		<property name="title" value="Note title1"/>
+		<property name="description" value="Note description"/>
+		<property name="gauge" value="2"/>
+		<property name="displayMoment" value="01/07/2019 11:00"/>
+		<property name="administrator" ref="administrator"/>
+		<property name="newsPaper" ref="newsPaper1"/>
+        <property name="finalMode" value="true"/>
+    </bean>
 
 </beans>

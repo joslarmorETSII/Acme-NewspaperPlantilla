@@ -45,6 +45,7 @@ public class NoteService {
         principal = administratorService.findByPrincipal();
         res.setAdministrator(principal);
         res.setTicker(generateCode());
+        res.setFinalMode(false);
 
         return res;
     }
@@ -78,8 +79,10 @@ public class NoteService {
         Administrator principal;
 
         res = findOne(id);
+        Assert.notNull(res);
         principal = administratorService.findByPrincipal();
-        Assert.isTrue(principal.equals(res.getAdministrator()));
+        Assert.isTrue(principal.equals(res.getAdministrator()),"Your are not the owner");
+        Assert.isTrue(!res.getFinalMode(),"Note is on final mode");
 
         return res;
     }
@@ -99,13 +102,13 @@ public class NoteService {
             String dd= string.substring(0, 2);
             String mm= string.substring(2, 4);
             String yy= string.substring(4, 6);
-            //in = r.nextInt(90)+10;
+            in = r.nextInt(90)+10;
 
-           /* for (int i = 0; i < 2; i++) {
+            for (int i = 0; i < 2; i++) {
                 int index = (int) (random.nextFloat() * letters.length());
                 letter += letters.charAt(index);
-            }*/
-            result = yy+"-"+"-"+mm+"-"+dd;
+            }
+            result = yy+"-"+mm+"-"+dd+"-"+letter;
             note = noteRepository.findByTicker(result);
             if (note == null)
                 break;

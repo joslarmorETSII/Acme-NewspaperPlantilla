@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+	
+	<definition name="note/edit" extends="master.page">
+		<put-attribute name="title" value="Edit note" />
+		<put-attribute name="body" value="/views/note/edit.jsp" />
+	</definition>
+	
+	<definition name="note/list" extends="master.page">
+		<put-attribute name="title" value="List notes" />
+		<put-attribute name="body" value="/views/note/list.jsp" />
+	</definition>
+
+	<definition name="note/addToNewsPaper" extends="master.page">
+		<put-attribute name="title" value="Add note to newspaper" />
+		<put-attribute name="body" value="/views/note/addToNewsPaper.jsp" />
+	</definition>
+	
+</tiles-definitions>
