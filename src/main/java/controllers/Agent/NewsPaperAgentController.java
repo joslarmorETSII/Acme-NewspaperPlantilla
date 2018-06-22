@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.AdvertisementService;
 import services.AgentService;
+import services.AuditService;
 import services.NewsPaperService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Collection;
 
 @Controller
@@ -31,6 +33,9 @@ public class NewsPaperAgentController extends AbstractController {
 
     @Autowired
     private AgentService agentService;
+
+    @Autowired
+    private AuditService auditService;
 
     public NewsPaperAgentController() { super();}
 
@@ -60,9 +65,12 @@ public class NewsPaperAgentController extends AbstractController {
         NewsPaper newsPaper;
         newsPaper = this.newsPaperService.findOne(newsPaperId);
 
+        Collection<Audit> audits = new ArrayList<>();
+        audits = auditService.AuditForDisplay(newsPaperId);
 
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
+        result.addObject("audits", audits);
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
 
 

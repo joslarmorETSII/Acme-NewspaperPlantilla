@@ -12,12 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import services.AuditService;
 import services.NewsPaperService;
 import services.UserService;
 import services.VolumeService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -36,7 +38,8 @@ public class NewsPaperUserController extends AbstractController {
     @Autowired
     private VolumeService volumeService;
 
-
+    @Autowired
+    private AuditService auditService;
 
     // Constructor --------------------------------------------
 
@@ -200,14 +203,15 @@ public class NewsPaperUserController extends AbstractController {
     public ModelAndView display(@RequestParam final int newsPaperId) {
         ModelAndView result;
         NewsPaper newsPaper= null;
+        Collection<Audit> audits = new ArrayList<>();
 
-
-
+        audits = auditService.AuditForDisplay(newsPaperId );
         newsPaper = this.newsPaperService.findOne(newsPaperId);
 
         Assert.isTrue(!newsPaper.isModePrivate());
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
+        result.addObject("audits", audits);
         result.addObject("cancelURI", "newsPaper/user/list.do");
 
 

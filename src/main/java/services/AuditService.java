@@ -131,8 +131,8 @@ public class AuditService {
 
     }
 
-    public Collection<Audit> AuditForDisplay(){
-        return auditRepository.AuditForDisplay();
+    public Collection<Audit> AuditForDisplay(int newsPaperId){
+        return auditRepository.AuditForDisplay(newsPaperId);
     }
 
 }

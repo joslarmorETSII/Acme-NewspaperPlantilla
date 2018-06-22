@@ -29,63 +29,63 @@
 <fieldset>
 
 
-<display:table name="audits" id="row" pagesize="5" class="displaytag" requestURI="${requestUri}">
+    <display:table name="audits" id="row" pagesize="5" class="displaytag" requestURI="${requestUri}">
 
 
 
-    <display:column>
+        <display:column>
+            <security:authorize access="hasRole('ADMINISTRATOR')" >
+                <jstl:if test="${row.finalMode eq false}">
+                    <acme:button url="audit/administrator/edit.do?auditId=${row.id}" code="audit.edit" />
+                </jstl:if>
+            </security:authorize>
+        </display:column>
+
+        <acme:column code="audit.title" value="${row.title} " />
+        <acme:column code="audit.description" value="${row.description}"/>
+        <acme:column code="audit.gauge" value="${row.gauge}"/>
+        <acme:column code="audit.code" value="${row.code}"/>
+
+        <spring:message var="moment" code="audit.moment"/>
+        <spring:message var="formatDate" code="event.format.date"/>
+        <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true" />
+
+
         <security:authorize access="hasRole('ADMINISTRATOR')" >
-            <jstl:if test="${row.finalMode eq false}">
-                <acme:button url="audit/administrator/edit.do?auditId=${row.id}" code="audit.edit" />
-            </jstl:if>
+            <display:column>
+                <jstl:if test="${row.finalMode ne false && row.newsPaper eq null}">
+                    <acme:button url="audit/administrator/asociateNewsPaper.do?auditId=${row.id}" code="audit.asociateNewsPaper"/>
+                </jstl:if>
+
+                <jstl:if test="${row.newsPaper eq null} ">
+                    <spring:message code="audit.asociated" var="asociated"/> <jstl:out value="${asociated}" />
+                </jstl:if>
+
+                <jstl:if test="${row.finalMode eq false} ">
+                    <spring:message code="audit.noFinalMode" var="noFinalMode"/> <jstl:out value="${noFinalMode}" />
+                </jstl:if>
+            </display:column>
         </security:authorize>
-    </display:column>
 
-    <acme:column code="audit.title" value="${row.title} " />
-    <acme:column code="audit.description" value="${row.description}"/>
-    <acme:column code="audit.gauge" value="${row.gauge}"/>
-    <acme:column code="audit.code" value="${row.code}"/>
+        <security:authorize access="hasRole('ADMINISTRATOR')" >
+            <display:column >
 
-    <spring:message var="moment" code="audit.moment"/>
-    <spring:message var="formatDate" code="event.format.date"/>
-    <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true" />
+                <acme:button url="audit/administrator/display.do?auditId=${row.id}" code="audit.display"/>
 
-
-    <security:authorize access="hasRole('ADMINISTRATOR')" >
-        <display:column>
-            <jstl:if test="${row.finalMode ne false && row.newsPaper eq null}">
-                <acme:button url="audit/administrator/asociateNewsPaper.do?auditId=${row.id}" code="audit.asociateNewsPaper"/>
-            </jstl:if>
-
-            <jstl:if test="${row.newsPaper ne null} ">
-                <spring:message code="audit.asociated" var="asociated"/> <jstl:out value="${asociated}" />
-            </jstl:if>
-
-            <jstl:if test="${row.finalMode eq false} ">
-                <spring:message code="audit.noFinalMode" var="noFinalMode"/> <jstl:out value="${noFinalMode}" />
-            </jstl:if>
-        </display:column>
-    </security:authorize>
-
-    <security:authorize access="hasRole('ADMINISTRATOR')" >
-    <display:column >
-
-            <acme:button url="audit/administrator/display.do?auditId=${row.id}" code="audit.display"/>
-
-    </display:column>
-    </security:authorize>
+            </display:column>
+        </security:authorize>
 
 
 
-    <security:authorize access="hasRole('ADMINISTRATOR')" >
-        <display:column>
-            <acme:button url="audit/administrator/delete.do?auditId=${row.id}" code="audit.delete" />
-        </display:column>
-    </security:authorize>
+        <security:authorize access="hasRole('ADMINISTRATOR')" >
+            <display:column>
+                <acme:button url="audit/administrator/delete.do?auditId=${row.id}" code="audit.delete" />
+            </display:column>
+        </security:authorize>
 
 
 
-</display:table>
+    </display:table>
 </fieldset>
 <br/>
 

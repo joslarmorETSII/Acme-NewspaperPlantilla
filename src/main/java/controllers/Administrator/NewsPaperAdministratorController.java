@@ -10,14 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import services.ActorService;
-import services.AdministratorService;
-import services.NewsPaperService;
-import services.UserService;
+import services.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -38,7 +36,8 @@ public class NewsPaperAdministratorController extends AbstractController {
     @Autowired
     private ActorService actorService;
 
-
+    @Autowired
+    private AuditService auditService;
 
     // Constructor --------------------------------------------
 
@@ -99,8 +98,10 @@ public class NewsPaperAdministratorController extends AbstractController {
     public ModelAndView display(@RequestParam int newsPaperId, HttpServletRequest request) {
         ModelAndView result;
         NewsPaper newsPaper;
+        Collection<Audit> audits = new ArrayList<>();
 
         newsPaper = this.newsPaperService.findOne(newsPaperId);
+        audits = this.auditService.AuditForDisplay(newsPaperId);
 
         Actor actor=actorService.findByPrincipal();
         Administrator admin = administratorService.findByPrincipal();
@@ -110,6 +111,7 @@ public class NewsPaperAdministratorController extends AbstractController {
 
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
+        result.addObject("audits", audits);
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
 
         session.setAttribute("cancelUriSession", request.getRequestURI()+ "?newsPaperId=" + newsPaperId);
