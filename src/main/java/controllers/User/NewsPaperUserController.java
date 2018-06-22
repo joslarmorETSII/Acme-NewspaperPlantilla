@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.NewsPaperService;
+import services.NoteService;
 import services.UserService;
 import services.VolumeService;
 import javax.servlet.http.HttpServletRequest;
@@ -35,6 +36,9 @@ public class NewsPaperUserController extends AbstractController {
 
     @Autowired
     private VolumeService volumeService;
+
+    @Autowired
+    private NoteService noteService;
 
 
 
@@ -146,7 +150,6 @@ public class NewsPaperUserController extends AbstractController {
         ModelAndView result;
 
 
-
             try {
                 NewsPaper newsPaper = this.newsPaperService.reconstructS(newsPaperPruned,binding);
 
@@ -208,6 +211,7 @@ public class NewsPaperUserController extends AbstractController {
         Assert.isTrue(!newsPaper.isModePrivate());
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
+        result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
         result.addObject("cancelURI", "newsPaper/user/list.do");
 
 

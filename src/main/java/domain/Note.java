@@ -70,7 +70,6 @@ public class Note extends DomainEntity{
         this.gauge = gauge;
     }
 
-    @NotNull
     @Future
     @Temporal(TemporalType.TIMESTAMP)
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")

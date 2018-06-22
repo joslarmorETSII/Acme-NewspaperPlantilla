@@ -135,6 +135,7 @@
 		<property name="notes">
 			<list>
 				<ref bean="note1"/>
+				<ref bean="note2"/>
 			</list>
 		</property>
 	</bean>
@@ -157,7 +158,8 @@
 		</property>
 		<property name="notes">
 			<list>
-				<null/>
+				<ref bean="note3"/>
+				<ref bean="note4"/>
 			</list>
 		</property>
 	</bean>
@@ -449,6 +451,9 @@
 		<property name="notes">
 			<list>
 				<ref bean="note1"/>
+				<ref bean="note2"/>
+				<ref bean="note3"/>
+				<ref bean="note4"/>
 			</list>
 		</property>
 	</bean>
@@ -1343,5 +1348,40 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		<property name="newsPaper" ref="newsPaper1"/>
         <property name="finalMode" value="true"/>
     </bean>
+
+	<bean id="note2" class="domain.Note">
+		<property name="ticker" value="20-12-20-Cv"/>
+		<property name="title" value="Note title2"/>
+		<property name="description" value="Note description 2"/>
+		<property name="gauge" value="2"/>
+		<property name="displayMoment" value="01/07/2019 11:00"/>
+		<property name="administrator" ref="administrator"/>
+		<property name="newsPaper" ref="newsPaper1"/>
+		<property name="finalMode" value="false"/>
+	</bean>
+
+	<bean id="note3" class="domain.Note">
+		<property name="ticker" value="18-12-20-0P"/>
+		<property name="title" value="Note title3"/>
+		<property name="description" value="Note description 3"/>
+		<property name="gauge" value="3"/>
+		<property name="displayMoment" >
+			<null/>
+		</property>
+		<property name="administrator" ref="administrator2"/>
+		<property name="newsPaper" ref="newsPaper1"/>
+		<property name="finalMode" value="true"/>
+	</bean>
+
+	<bean id="note4" class="domain.Note">
+		<property name="ticker" value="18-12-20-IH"/>
+		<property name="title" value="Note title4"/>
+		<property name="description" value="Note description 4"/>
+		<property name="gauge" value="1"/>
+		<property name="displayMoment" value="01/07/2019 11:00"/>
+		<property name="administrator" ref="administrator2"/>
+		<property name="newsPaper" ref="newsPaper1"/>
+		<property name="finalMode" value="false"/>
+	</bean>
 
 </beans>

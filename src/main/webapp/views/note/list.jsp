@@ -10,6 +10,17 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
+
+
+<jstl:if test="${pageContext.response.locale.language == 'es' }">
+	<jstl:set value="{0,date,dd/MM/yyyy HH:mm}" var="formatDate"/>
+</jstl:if>
+
+<jstl:if test="${pageContext.response.locale.language == 'en' }">
+	<jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
+</jstl:if>
+
+
 <display:table name="notes" pagesize="5" class="displaytag" requestURI="note/administrator/list.do" id="row">
 
 	<jstl:choose>
@@ -26,6 +37,9 @@
 		</jstl:if>
 	</display:column>
 
+	<spring:message code="note.ticker" var="headerTag" />
+	<display:column property="ticker" title="${headerTag}" style="${style}"/>
+
 	<spring:message code="note.title" var="headerTag" />
 	<display:column property="title" title="${headerTag}" style="${style}"/>
 
@@ -38,12 +52,22 @@
 	<spring:message code="note.newsPaper" var="headerTag" />
 	<display:column property="newsPaper.title" title="${headerTag}" style="${style}"/>
 
-	<display:column style="${style}">
+
+	<spring:message code="note.displayMoment" var="headerTag" />
+	<display:column property="displayMoment" title="${headerTag}" format="${formatDate}" style="${style}" />
+
+	<display:column>
 		<jstl:if test="${row.finalMode eq true and row.newsPaper eq null}">
 			<a href="note/administrator/addToNewsPaper.do?noteId=${row.id}">
 				<spring:message code="note.addNewsPaper" />
 			</a>
 		</jstl:if>
+	</display:column>
+
+	<display:column>
+		<a href="note/administrator/delete.do?noteId=${row.id}">
+				<spring:message code="note.delete" />
+			</a>
 	</display:column>
 
 </display:table>

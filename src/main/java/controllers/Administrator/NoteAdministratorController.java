@@ -129,6 +129,18 @@ public class NoteAdministratorController extends AbstractController {
         return result;
     }
 
+    // delete
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public ModelAndView delete(@RequestParam int noteId) {
+        ModelAndView result;
+        Note note;
+
+        note = noteService.findOne(noteId);
+        noteService.delete(note);
+        result = new ModelAndView("redirect:list.do");
+
+        return result;
+    }
     // Ancillary methods ------------------------------------------------------
 
     protected ModelAndView createEditModelAndView(Note note) {

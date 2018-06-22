@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import services.ActorService;
-import services.AdministratorService;
-import services.NewsPaperService;
-import services.UserService;
+import services.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -37,6 +34,9 @@ public class NewsPaperAdministratorController extends AbstractController {
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private NoteService noteService;
 
 
 
@@ -111,6 +111,7 @@ public class NewsPaperAdministratorController extends AbstractController {
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
+        result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
 
         session.setAttribute("cancelUriSession", request.getRequestURI()+ "?newsPaperId=" + newsPaperId);
         return result;

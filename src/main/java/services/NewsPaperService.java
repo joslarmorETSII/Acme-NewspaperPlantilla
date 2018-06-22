@@ -61,6 +61,9 @@ public class NewsPaperService {
     @Autowired
     private SubscribeVolumeService subscribeVolumeService;
 
+    @Autowired
+    private NoteService noteService;
+
     // Constructors -----------------------------------------------------------
 
     public NewsPaperService() {
@@ -84,6 +87,7 @@ public class NewsPaperService {
         res.setSubscriptions(new ArrayList<SubscribeNewsPaper>());
         res.setAdvertisements(advertisements);
         res.setVolumes(volumes);
+        res.setNotes(new ArrayList<Note>());
         return res;
     }
 
@@ -134,6 +138,10 @@ public class NewsPaperService {
                 v.getSubscriptionVolumes().remove(newsPaper);
                 this.subscribeVolumeService.deleteCustomerVolume(v1);
             }
+        }
+        // Delete Associated notes
+        for(Note n : newsPaper.getNotes()){
+            noteService.delete(n);
         }
         this.advertisementService.deleteAll(newsPaper);
         this.volumeService.delete(newsPaper);

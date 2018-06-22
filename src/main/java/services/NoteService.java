@@ -116,4 +116,7 @@ public class NoteService {
         return result;
     }
 
+    public Collection<Note> findNotesToDisplay(int newsPaperId) {
+        return noteRepository.findNotesToDisplay(newsPaperId);
+    }
 }

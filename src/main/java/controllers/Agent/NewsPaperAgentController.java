@@ -12,6 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 import services.AdvertisementService;
 import services.AgentService;
 import services.NewsPaperService;
+import services.NoteService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -31,6 +32,9 @@ public class NewsPaperAgentController extends AbstractController {
 
     @Autowired
     private AgentService agentService;
+
+    @Autowired
+    private NoteService noteService;
 
     public NewsPaperAgentController() { super();}
 
@@ -63,6 +67,7 @@ public class NewsPaperAgentController extends AbstractController {
 
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
+        result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
 
 

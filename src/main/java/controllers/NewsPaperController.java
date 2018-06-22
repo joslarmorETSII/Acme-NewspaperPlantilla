@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.NewsPaperService;
+import services.NoteService;
 import services.VolumeService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -33,6 +34,9 @@ public class NewsPaperController extends AbstractController {
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private NoteService noteService;
 
     // Constructor --------------------------------------------
 
@@ -122,6 +126,7 @@ public class NewsPaperController extends AbstractController {
 
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
+        result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
 
         return result;
@@ -137,6 +142,7 @@ public class NewsPaperController extends AbstractController {
         Assert.isTrue(!newsPaper.isModePrivate());
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
+        result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
         result.addObject("cancelURI", "newsPaper/listAll.do");
 
 

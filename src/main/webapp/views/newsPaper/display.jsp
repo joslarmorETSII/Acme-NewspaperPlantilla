@@ -16,6 +16,16 @@
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 
+<jstl:if test="${pageContext.response.locale.language == 'es' }">
+    <jstl:set value="{0,date,dd/MM/yyyy HH:mm}" var="formatDate"/>
+</jstl:if>
+
+<jstl:if test="${pageContext.response.locale.language == 'en' }">
+    <jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
+</jstl:if>
+
+
+
 <h3><b><spring:message code="newsPaper.title"/>:&nbsp; </b><jstl:out value="${newsPaper.title}"/></h3>
 
 
@@ -55,27 +65,34 @@
 <fieldset>
     <legend>Notes</legend>
 
-    <display:table name="newsPaper.notes" pagesize="5" class="displaytag" requestURI="note/administrator/list.do" id="row">
+    <display:table name="notes" pagesize="5" class="displaytag" requestURI="note/administrator/list.do" id="row">
 
-    <jstl:choose>
-        <jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
-        <jstl:when test="${row.gauge eq '2'}">  <jstl:set var="style" value="background-color: Moccasin; color: black"/> </jstl:when>
-        <jstl:when test="${row.gauge eq '3'}">  <jstl:set var="style" value="background-color: Blue; color: white"/> </jstl:when>
-    </jstl:choose>
+        <jstl:choose>
+            <jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
+            <jstl:when test="${row.gauge eq '2'}">  <jstl:set var="style" value="background-color: Moccasin; color: black"/> </jstl:when>
+            <jstl:when test="${row.gauge eq '3'}">  <jstl:set var="style" value="background-color: Blue; color: white"/> </jstl:when>
+        </jstl:choose>
 
-    <spring:message code="note.title" var="headerTag" />
-    <display:column property="title" title="${headerTag}" style="${style}"/>
+        <spring:message code="note.ticker" var="headerTag" />
+        <display:column property="ticker" title="${headerTag}" style="${style}"/>
 
-    <spring:message code="note.description" var="headerTag" />
-    <display:column property="description" title="${headerTag}" style="${style}"/>
+        <spring:message code="note.title" var="headerTag" />
+        <display:column property="title" title="${headerTag}" style="${style}"/>
 
-    <spring:message code="note.gauge" var="headerTag" />
-    <display:column property="gauge" title="${headerTag}" style="${style}"/>
+        <spring:message code="note.description" var="headerTag" />
+        <display:column property="description" title="${headerTag}" style="${style}"/>
 
-    <spring:message code="note.newsPaper" var="headerTag" />
-    <display:column property="newsPaper.title" title="${headerTag}" style="${style}"/>
+        <spring:message code="note.gauge" var="headerTag" />
+        <display:column property="gauge" title="${headerTag}" style="${style}"/>
 
-</display:table>
+        <spring:message code="note.newsPaper" var="headerTag" />
+        <display:column property="newsPaper.title" title="${headerTag}" style="${style}"/>
+
+        <spring:message code="note.displayMoment" var="headerTag" />
+        <display:column property="displayMoment" title="${headerTag}" format="${formatDate}" style="${style}" />
+
+
+    </display:table>
 </fieldset>
 </security:authorize>
 

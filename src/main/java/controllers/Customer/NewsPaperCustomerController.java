@@ -45,6 +45,9 @@ public class NewsPaperCustomerController extends AbstractController{
     @Autowired
     private SubscribeNewsPaperService subscribeNewsPaperService;
 
+    @Autowired
+    private NoteService noteService;
+
     // Listing  --------------------------------------------------------------
     //Listado de newspaper donde estoy suscrito
     @RequestMapping(value = "/listNewsPaperCustomer", method = RequestMethod.GET)
@@ -233,6 +236,7 @@ public class NewsPaperCustomerController extends AbstractController{
         result.addObject("newsPaper", newsPaper);
         result.addObject("cancelURI", "newsPaper/listAll.do");
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
+        result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
 
         session.setAttribute("cancelUriSession", request.getRequestURI()+"?newsPaperId="+newsPaperId);
 
