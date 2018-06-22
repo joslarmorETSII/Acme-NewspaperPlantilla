@@ -34,6 +34,8 @@
 			<li><a class="fNiv" href="newsPaper/administrator/list.do"><spring:message code="master.page.newsPaper.administrator" /></a></li>
             <li><a class="fNiv" href="article/administrator/list.do"><spring:message code="master.page.article.administrator" /></a></li>
 			<li><a class="fNiv" href="advertisement/administrator/list.do"><spring:message code="master.page.advertisement.list" />
+			<li><a class="fNiv" href="audit/administrator/list.do"><spring:message code="master.page.audit.list" />
+
 		</security:authorize>
 
 		<security:authorize access="hasRole('USER')">

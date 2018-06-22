@@ -38,6 +38,7 @@
 		<value>/views/folder/tiles.xml</value>
 		<value>/views/message/tiles.xml</value>
 		<value>/views/advertisement/tiles.xml</value>
+		<value>/views/audit/tiles.xml</value>
 
 
 	</util:list>

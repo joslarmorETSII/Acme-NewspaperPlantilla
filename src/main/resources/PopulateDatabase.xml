@@ -120,6 +120,12 @@
 				<ref bean="notificationbox1"/>
 			</list>
 		</property>
+		<property name="audits">
+			<list>
+				<ref bean="audit1" />
+				<ref bean="audit2" />
+			</list>
+		</property>
 	</bean>
 
 	<!-- Customers -->
@@ -385,6 +391,11 @@
 		<property name="taboo" value="false"/>
 		<property name="modePrivate" value="false"/>
 		<property name="publisher" ref="user1"/>
+		<property name="audits">
+			<list>
+				<ref bean="audit1"/>
+			</list>
+		</property>
 
 		<property name="articles">
 			<list>
@@ -418,6 +429,11 @@
 		<property name="taboo" value="false"/>
 		<property name="modePrivate" value="true"/>
 		<property name="publisher" ref="user1"/>
+		<property name="audits">
+			<list>
+				<null/>
+			</list>
+		</property>
 
 		<property name="articles">
 			<list>
@@ -451,6 +467,11 @@
 		<property name="taboo" value="true"/>
 		<property name="modePrivate" value="true"/>
 		<property name="publisher" ref="user1"/>
+		<property name="audits">
+			<list>
+				<null />
+			</list>
+		</property>
 
 		<property name="articles">
 			<list>
@@ -484,6 +505,11 @@
 		<property name="taboo" value="false"/>
 		<property name="modePrivate" value="false"/>
 		<property name="publisher" ref="user1"/>
+		<property name="audits">
+			<list>
+				<null />
+			</list>
+		</property>
 
 		<property name="articles">
 			<list>
@@ -1224,6 +1250,31 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 			</list>
 		</property>
 		<property name="actorSender" ref="administrator" />
+	</bean>
+
+	<!-- Audit -->
+	<bean id="audit1" class="domain.Audit">
+		<property name="title" value="audit for newsPaper1"/>
+		<property name="description" value="description1"/>
+		<property name="code" value="22:AA:34:12021:07"/>
+		<property name="moment" value="2019/03/20 10:00"/>
+		<property name="administrator" ref="administrator"/>
+		<property name="gauge" value="1"/>
+		<property name="finalMode" value="false"/>
+		<property name="newsPaper" ref="newsPaper1"/>
+	</bean>
+
+
+	<bean id="audit2" class="domain.Audit">
+		<property name="title" value="audit for newsPaper2"/>
+		<property name="description" value="description1"/>
+		<property name="code" value="22:AA:34:12022:07"/>
+		<property name="moment" value="2019/03/20 10:00"/>
+		<property name="administrator" ref="administrator"/>
+		<property name="gauge" value="1"/>
+		<property name="finalMode" value="true"/>
+		<property name="newsPaper" > <null/>
+		</property>
 	</bean>
 
 </beans>

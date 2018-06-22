@@ -37,12 +37,6 @@
         </jstl:if>
     </security:authorize>
 
-    <security:authorize access="hasRole('USER')">
-        <jstl:if test="${empty newsPaper.subscriptions && newsPaper.id !=0}">
-            <acme:submit name="delete" code="newsPaper.delete"/>
-        </jstl:if>
-    </security:authorize>
-
     <input type="button" name="cancel" value="<spring:message code="newsPaper.cancel" />" onclick="javascript: relativeRedir('${cancelUriSession}');" />
 
 </form:form>
