@@ -50,6 +50,35 @@
     </details>
 </jstl:forEach>
 </fieldset>
+<security:authorize access="isAuthenticated()">
+
+<fieldset>
+    <legend>Notes</legend>
+
+    <display:table name="newsPaper.notes" pagesize="5" class="displaytag" requestURI="note/administrator/list.do" id="row">
+
+    <jstl:choose>
+        <jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
+        <jstl:when test="${row.gauge eq '2'}">  <jstl:set var="style" value="background-color: Moccasin; color: black"/> </jstl:when>
+        <jstl:when test="${row.gauge eq '3'}">  <jstl:set var="style" value="background-color: Blue; color: white"/> </jstl:when>
+    </jstl:choose>
+
+    <spring:message code="note.title" var="headerTag" />
+    <display:column property="title" title="${headerTag}" style="${style}"/>
+
+    <spring:message code="note.description" var="headerTag" />
+    <display:column property="description" title="${headerTag}" style="${style}"/>
+
+    <spring:message code="note.gauge" var="headerTag" />
+    <display:column property="gauge" title="${headerTag}" style="${style}"/>
+
+    <spring:message code="note.newsPaper" var="headerTag" />
+    <display:column property="newsPaper.title" title="${headerTag}" style="${style}"/>
+
+</display:table>
+</fieldset>
+</security:authorize>
+
 
 <br/>
 
