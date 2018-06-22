@@ -15,6 +15,7 @@
 <%@taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@taglib prefix="security"	uri="http://www.springframework.org/security/tags"%>
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
+<%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
 <h3><b><spring:message code="newsPaper.title"/>:&nbsp; </b><jstl:out value="${newsPaper.title}"/></h3>
 
@@ -56,6 +57,12 @@
 <fieldset>
     <display:table name="audits" id="audit" pagesize="5" class="displaytag" requestURI="audit/administrator/list.do">
 
+        <jstl:choose>
+            <jstl:when test="${audit.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
+            <jstl:when test="${audit.gauge eq '2'}">  <jstl:set var="style" value="background-color: Moccasin; color: black"/> </jstl:when>
+            <jstl:when test="${audit.gauge eq '3'}">  <jstl:set var="style" value="background-color: Blue; color: white"/> </jstl:when>
+        </jstl:choose>
+
         <display:column>
             <security:authorize access="hasRole('ADMINISTRATOR')" >
                 <jstl:if test="${row.finalMode eq false}">
@@ -64,10 +71,17 @@
             </security:authorize>
         </display:column>
 
-        <acme:column code="audit.title" value="${audit.title} " />
-        <acme:column code="audit.description" value="${audit.description}"/>
-        <acme:column code="audit.gauge" value="${audit.gauge}"/>
-        <acme:column code="audit.code" value="${audit.code}"/>
+        <spring:message code="audit.title" var="headerTag" />
+        <display:column property="title" title="${headerTag}" style="${style}"/>
+
+        <spring:message code="audit.description" var="headerTag" />
+        <display:column property="description" title="${headerTag}" style="${style}"/>
+
+        <spring:message code="audit.gauge" var="headerTag" />
+        <display:column property="gauge" title="${headerTag}" style="${style}"/>
+
+        <spring:message code="audit.code" var="headerTag" />
+        <display:column property="code" title="${headerTag}" style="${style}"/>
 
         <spring:message var="moment" code="audit.moment"/>
         <spring:message var="formatDate" code="event.format.date"/>

@@ -169,7 +169,7 @@ public class AuditAdministratorController extends AbstractController {
         result = new ModelAndView("audit/display");
         result.addObject("audit", audit);
         result.addObject("administrator", administrator);
-        result.addObject("cancelUri","audit/administrator/list.do");
+        result.addObject("cancelUri","welcome/index.do");
         result.addObject("momentEs", momentEs);
         result.addObject("momentEn", momentEn);
 

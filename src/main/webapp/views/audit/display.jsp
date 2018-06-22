@@ -48,9 +48,6 @@
 </jstl:if>
 
 
-
-
-
 <br/>
 
 <input type="button" name="cancel" value="<spring:message code="general.cancel" />"
