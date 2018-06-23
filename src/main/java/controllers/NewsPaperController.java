@@ -1,6 +1,7 @@
 package controllers;
 
 import domain.Actor;
+import domain.Audit;
 import domain.NewsPaper;
 import domain.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,11 +12,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
+import services.AuditService;
 import services.NewsPaperService;
 import services.VolumeService;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
@@ -33,6 +36,9 @@ public class NewsPaperController extends AbstractController {
 
     @Autowired
     private ActorService actorService;
+
+    @Autowired
+    private AuditService auditService;
 
     // Constructor --------------------------------------------
 
@@ -110,9 +116,12 @@ public class NewsPaperController extends AbstractController {
         ModelAndView result;
         NewsPaper newsPaper;
         newsPaper = this.newsPaperService.findOne(newsPaperId);
+        Collection<Audit> audits= new ArrayList<>();
 
         Actor actor=actorService.findByPrincipal();
+
         User publisher = newsPaper.getPublisher();
+        audits=auditService.AuditForDisplay(newsPaperId);
 
         if(!actor.equals(publisher) ){
             Assert.isTrue(!newsPaper.isModePrivate());
@@ -123,6 +132,7 @@ public class NewsPaperController extends AbstractController {
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
+        result.addObject("audits",audits);
 
         return result;
     }
@@ -131,13 +141,16 @@ public class NewsPaperController extends AbstractController {
     public ModelAndView displayAnonymous(@RequestParam int newsPaperId) {
         ModelAndView result;
         NewsPaper newsPaper;
+        Collection<Audit> audits= new ArrayList<>();
 
         newsPaper = this.newsPaperService.findOne(newsPaperId);
+        audits=auditService.AuditForDisplay(newsPaperId);
 
         Assert.isTrue(!newsPaper.isModePrivate());
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
         result.addObject("cancelURI", "newsPaper/listAll.do");
+        result.addObject("audits",audits);
 
 
         return result;

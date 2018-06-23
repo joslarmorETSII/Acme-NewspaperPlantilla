@@ -18,6 +18,19 @@
 	
 	<!-- User accounts -->
 
+	<bean id="userAccount0" class="security.UserAccount">
+		<property name="username" value="administrator2" />
+		<property name="password" value="82954495ff7e2a735ed2192c35b2cd00" />
+		<property name="authorities">
+			<list>
+				<bean class="security.Authority">
+					<property name="authority" value="ADMINISTRATOR" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
 	<bean id="userAccount1" class="security.UserAccount">
 		<property name="username" value="administrator" />
 		<property name="password" value="200ceb26807d6bf99fd6f4f0d1ca54d4" />
@@ -127,6 +140,31 @@
 			</list>
 		</property>
 	</bean>
+
+	<bean id="administrator2" class="domain.Administrator">
+		<property name="name" value="Angel"/>
+		<property name="surname" value="Lara Morilla"/>
+		<property name="email" value="joslarmor@alum.us.es"/>
+		<property name="phone" value="+34618030683"/>
+		<property name="postalAddresses" value="C\ Tarfia Bloque 7 Piso 6B"/>
+		<property name="userAccount" ref="userAccount0"/>
+		<property name="folders">
+			<list>
+				<ref bean="inbox0" />
+				<ref bean="outbox0" />
+				<ref bean="spambox0" />
+				<ref bean="trashbox0" />
+				<ref bean="notificationbox0"/>
+			</list>
+		</property>
+		<property name="audits">
+			<list>
+				<ref bean="audit3" />
+				<ref bean="audit4" />
+			</list>
+		</property>
+	</bean>
+
 
 	<!-- Customers -->
 
@@ -870,6 +908,55 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 
 	<!-- Folders -->
 
+	<bean id="inbox0" class="domain.Folder">
+		<property name="name" value="inbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+				<ref bean="message1"/>
+			</list>
+		</property>
+		<property name="actor" ref="administrator2" />
+	</bean>
+
+	<bean id="outbox0" class="domain.Folder">
+		<property name="name" value="outbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list>
+				<null/>
+			</list>
+		</property>
+		<property name="actor" ref="administrator" />
+	</bean>
+
+	<bean id="spambox0" class="domain.Folder">
+		<property name="name" value="spambox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="administrator2" />
+	</bean>
+
+	<bean id="trashbox0" class="domain.Folder">
+		<property name="name" value="trashbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="administrator2" />
+	</bean>
+
+	<bean id="notificationbox0" class="domain.Folder">
+		<property name="name" value="notificationbox" />
+		<property name="system" value="true" />
+		<property name="messages">
+			<list />
+		</property>
+		<property name="actor" ref="administrator2" />
+	</bean>
+
 	<bean id="inbox1" class="domain.Folder">
 		<property name="name" value="inbox" />
 		<property name="system" value="true" />
@@ -1272,6 +1359,30 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		<property name="moment" value="2019/03/20 10:00"/>
 		<property name="administrator" ref="administrator"/>
 		<property name="gauge" value="1"/>
+		<property name="finalMode" value="true"/>
+		<property name="newsPaper" > <null/>
+		</property>
+	</bean>
+
+	<bean id="audit3" class="domain.Audit">
+		<property name="title" value="audit for newsPaper1"/>
+		<property name="description" value="description1"/>
+		<property name="code" value="22:AA:34:13022:07"/>
+		<property name="moment" value="2019/03/20 10:00"/>
+		<property name="administrator" ref="administrator2"/>
+		<property name="gauge" value="2"/>
+		<property name="finalMode" value="true"/>
+		<property name="newsPaper" > <null/>
+		</property>
+	</bean>
+
+	<bean id="audit4" class="domain.Audit">
+		<property name="title" value="audit for newsPaper2"/>
+		<property name="description" value="description1"/>
+		<property name="code" value="22:AA:34:22022:07"/>
+		<property name="moment" value="2019/03/20 10:00"/>
+		<property name="administrator" ref="administrator2"/>
+		<property name="gauge" value="3"/>
 		<property name="finalMode" value="true"/>
 		<property name="newsPaper" > <null/>
 		</property>

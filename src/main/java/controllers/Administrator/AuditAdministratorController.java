@@ -58,14 +58,16 @@ public class AuditAdministratorController extends AbstractController {
     public ModelAndView list() {
         ModelAndView result;
         Collection<Audit> audits;
+        Administrator administrator = administratorService.findByPrincipal();
 
 
         result = new ModelAndView("audit/list");
 
-        audits = auditService.findAll();
+        audits = administrator.getAudits();
 
         result.addObject("audits", audits);
         result.addObject("requestURI","audit/administrator/list.do");
+
 
 
         return result;
@@ -88,6 +90,8 @@ public class AuditAdministratorController extends AbstractController {
     @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
     public ModelAndView save(@Valid final  Audit audit, final BindingResult binding) {
         ModelAndView result;
+        auditService.checkMoment(audit.getMoment(),binding);
+
         if (binding.hasErrors())
             result = this.createEditModelAndView(audit);
         else

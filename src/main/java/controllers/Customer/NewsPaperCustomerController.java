@@ -240,6 +240,7 @@ public class NewsPaperCustomerController extends AbstractController{
         result.addObject("cancelURI", "newsPaper/listAll.do");
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
 
+
         session.setAttribute("cancelUriSession", request.getRequestURI()+"?newsPaperId="+newsPaperId);
 
         return result;

@@ -55,7 +55,7 @@
 <br/>
 
 <fieldset>
-    <display:table name="audits" id="audit" pagesize="5" class="displaytag" requestURI="audit/administrator/list.do">
+    <display:table name="audits" id="audit" pagesize="5" class="displaytag" requestURI="audit/actor/list.do">
 
         <jstl:choose>
             <jstl:when test="${audit.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
@@ -85,7 +85,7 @@
 
         <spring:message var="moment" code="audit.moment"/>
         <spring:message var="formatDate" code="event.format.date"/>
-        <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true" />
+        <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true"  style="${style}" />
 
         <security:authorize access="hasRole('ADMINISTRATOR')" >
             <display:column>

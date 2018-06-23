@@ -19,6 +19,7 @@ import javax.validation.constraints.Pattern;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.Range;
+import org.hibernate.validator.constraints.SafeHtml;
 import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
@@ -59,6 +60,7 @@ public class Audit extends DomainEntity {
 
     @NotBlank
     @Length(max = 100)
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getTitle() {
         return this.title;
     }
@@ -69,6 +71,7 @@ public class Audit extends DomainEntity {
 
 
     @Length(max = 250)
+    @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getDescription() {
         return this.description;
     }

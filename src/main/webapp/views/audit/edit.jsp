@@ -48,7 +48,7 @@
         <acme:submit name="save" code="audit.save"/>
 
 
-        <acme:submit name="delete" code="newsPaper.delete"/>
+
 
 
 

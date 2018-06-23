@@ -61,6 +61,9 @@ public class NewsPaperService {
     @Autowired
     private SubscribeVolumeService subscribeVolumeService;
 
+    @Autowired
+    private AuditService auditService;
+
     // Constructors -----------------------------------------------------------
 
     public NewsPaperService() {
@@ -137,6 +140,8 @@ public class NewsPaperService {
                 this.subscribeVolumeService.deleteCustomerVolume(v1);
             }
         }
+        Collection<Audit> audits= newsPaper.getAudits();
+        auditService.deleteAll(audits);
         this.advertisementService.deleteAll(newsPaper);
         this.volumeService.delete(newsPaper);
         this.articleService.deleteAll(newsPaper.getArticles());

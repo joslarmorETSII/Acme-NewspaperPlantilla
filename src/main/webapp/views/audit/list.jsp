@@ -29,7 +29,13 @@
 <fieldset>
 
 
-    <display:table name="audits" id="row" pagesize="5" class="displaytag" requestURI="${requestUri}">
+    <display:table name="audits" id="row" pagesize="5" class="displaytag" requestURI="${requestURI}">
+
+        <jstl:choose>
+            <jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
+            <jstl:when test="${row.gauge eq '2'}">  <jstl:set var="style" value="background-color: Moccasin; color: black"/> </jstl:when>
+            <jstl:when test="${row.gauge eq '3'}">  <jstl:set var="style" value="background-color: Blue; color: white"/> </jstl:when>
+        </jstl:choose>
 
 
 
@@ -41,30 +47,33 @@
             </security:authorize>
         </display:column>
 
-        <acme:column code="audit.title" value="${row.title} " />
-        <acme:column code="audit.description" value="${row.description}"/>
-        <acme:column code="audit.gauge" value="${row.gauge}"/>
-        <acme:column code="audit.code" value="${row.code}"/>
+        <spring:message code="audit.title" var="headerTag" />
+        <display:column property="title" title="${headerTag}" style="${style}"/>
+
+        <spring:message code="audit.description" var="headerTag" />
+        <display:column property="description" title="${headerTag}" style="${style}"/>
+
+        <spring:message code="audit.gauge" var="headerTag" />
+        <display:column property="gauge" title="${headerTag}" style="${style}"/>
+
+        <spring:message code="audit.code" var="headerTag" />
+        <display:column property="code" title="${headerTag}" style="${style}"/>
 
         <spring:message var="moment" code="audit.moment"/>
         <spring:message var="formatDate" code="event.format.date"/>
-        <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true" />
+        <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true" style="${style}" />
 
 
-        <security:authorize access="hasRole('ADMINISTRATOR')" >
-            <display:column>
-                <jstl:if test="${row.finalMode ne false && row.newsPaper eq null}">
-                    <acme:button url="audit/administrator/asociateNewsPaper.do?auditId=${row.id}" code="audit.asociateNewsPaper"/>
-                </jstl:if>
+    <security:authorize access="hasRole('ADMINISTRATOR')" >
+        <display:column>
+            <jstl:if test="${row.finalMode ne false && row.newsPaper eq null}">
+                <acme:button url="audit/administrator/asociateNewsPaper.do?auditId=${row.id}" code="audit.asociateNewsPaper"/>
+            </jstl:if>
 
-                <jstl:if test="${row.newsPaper eq null} ">
-                    <spring:message code="audit.asociated" var="asociated"/> <jstl:out value="${asociated}" />
-                </jstl:if>
-
-                <jstl:if test="${row.finalMode eq false} ">
-                    <spring:message code="audit.noFinalMode" var="noFinalMode"/> <jstl:out value="${noFinalMode}" />
-                </jstl:if>
-            </display:column>
+            <jstl:if test="${row.finalMode ne false && row.newsPaper ne null}">
+                <spring:message code="audit.asociated"/>
+            </jstl:if>
+        </display:column>
         </security:authorize>
 
         <security:authorize access="hasRole('ADMINISTRATOR')" >

@@ -16,6 +16,8 @@ import org.springframework.util.Assert;
 import domain.Administrator;
 
 import domain.NewsPaper;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import repositories.AuditRepository;
 import security.Authority;
 
@@ -68,7 +70,6 @@ public class AuditService {
         Audit saved = null;
 
         Assert.notNull(audit);
-
         this.checkByPrincipal(audit);
         saved = this.auditRepository.save(audit);
 
@@ -79,6 +80,10 @@ public class AuditService {
         this.checkByPrincipal(audit);
 
         this.auditRepository.delete(audit);
+    }
+
+    public void deleteAll(Collection<Audit> audits){
+        auditRepository.delete(audits);
     }
 
     public Audit findOneToEdit(final Integer auditId) {
@@ -135,5 +140,27 @@ public class AuditService {
         return auditRepository.AuditForDisplay(newsPaperId);
     }
 
+    public boolean checkMoment(Date moment, BindingResult binding) {
+        FieldError error;
+        String[] codigos;
+        Date date = new Date();
+        boolean result;
+
+        if (moment != null)
+            result = moment.after(date);
+        else
+            result = true;
+        if (!result) {
+            codigos = new String[1];
+            codigos[0] = "audit.moment.invalid";
+            error = new FieldError("audit", "moment", moment, false, codigos, null, "Must be in the future");
+            binding.addError(error);
+        }
+        return result;
+    }
+
+    public void flush() {
+        auditRepository.flush();
+    }
 }
 
