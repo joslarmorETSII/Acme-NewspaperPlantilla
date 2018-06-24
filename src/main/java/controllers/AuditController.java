@@ -17,8 +17,8 @@ import services.NewsPaperService;
 import java.util.Collection;
 
 @Controller
-@RequestMapping("/audit/actor")
-public class AuditActorController extends AbstractController {
+@RequestMapping("/audit")
+public class AuditController extends AbstractController {
 
     // Services --------------------------------------------
 
@@ -33,7 +33,7 @@ public class AuditActorController extends AbstractController {
 
     // Constructor --------------------------------------------
 
-    public AuditActorController() { super();}
+    public AuditController() { super();}
 
 
 
@@ -51,7 +51,7 @@ public class AuditActorController extends AbstractController {
         audits = auditService.AuditForDisplay(newsPaperId);
 
         result.addObject("audits", audits);
-        result.addObject("requestURI","audit/actor/list.do");
+        result.addObject("requestURI","audit/list.do");
         result.addObject("newsPaper",newsPaper);
 
         return result;

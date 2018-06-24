@@ -113,7 +113,7 @@
 
 		<!-- Audit -->
 		<security:intercept-url pattern="/audit/administrator/**" access="hasRole('ADMINISTRATOR')" />
-		<security:intercept-url pattern="/audit/actor/**" access="isAuthenticated()" />
+		<security:intercept-url pattern="/audit/**" access="permitAll()" />
 
         <security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

@@ -35,7 +35,7 @@ public class Audit extends DomainEntity {
     private String	title;
     private String	description;
     private Date	moment;
-    private Boolean finalMode;
+    private boolean finalMode;
 
 
     @Column(unique = true)
@@ -69,7 +69,7 @@ public class Audit extends DomainEntity {
         this.title = title;
     }
 
-
+    @NotBlank
     @Length(max = 250)
     @SafeHtml(whitelistType = SafeHtml.WhiteListType.NONE)
     public String getDescription() {
@@ -91,11 +91,11 @@ public class Audit extends DomainEntity {
         this.moment = moment;
     }
 
-    public Boolean getFinalMode() {
+    public boolean getFinalMode() {
         return finalMode;
     }
 
-    public void setFinalMode(Boolean finalMode) {
+    public void setFinalMode(boolean finalMode) {
         this.finalMode = finalMode;
     }
 

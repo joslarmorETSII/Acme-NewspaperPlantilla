@@ -55,8 +55,8 @@
 <br/>
 
 <fieldset>
-    <legend>Audits Of The Newspaper</legend>
-    <display:table name="audits" id="audit" pagesize="5" class="displaytag" requestURI="audit/actor/list.do">
+    <legend><spring:message code="audit.newsPaperAsociat"></spring:message></legend>
+    <display:table name="audits" id="audit" pagesize="5" class="displaytag" requestURI="audit/list.do">
 
         <jstl:choose>
             <jstl:when test="${audit.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
@@ -64,13 +64,6 @@
             <jstl:when test="${audit.gauge eq '3'}">  <jstl:set var="style" value="background-color: Blue; color: white"/> </jstl:when>
         </jstl:choose>
 
-        <display:column>
-            <security:authorize access="hasRole('ADMINISTRATOR')" >
-                <jstl:if test="${row.finalMode eq false}">
-                    <acme:button url="audit/administrator/edit.do?auditId=${audit.id}" code="audit.edit" />
-                </jstl:if>
-            </security:authorize>
-        </display:column>
 
         <spring:message code="audit.title" var="headerTag" />
         <display:column property="title" title="${headerTag}" style="${style}"/>
@@ -81,44 +74,16 @@
         <spring:message code="audit.gauge" var="headerTag" />
         <display:column property="gauge" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="audit.code" var="headerTag" />
-        <display:column property="code" title="${headerTag}" style="${style}"/>
+        <spring:message code="audit.ticker" var="headerTag" />
+        <display:column property="ticker" title="${headerTag}" style="${style}"/>
 
         <spring:message var="moment" code="audit.moment"/>
         <spring:message var="formatDate" code="event.format.date"/>
         <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true"  style="${style}" />
 
-        <security:authorize access="hasRole('ADMINISTRATOR')" >
-            <display:column>
-                <jstl:if test="${audit.finalMode ne false && audit.newsPaper eq null}">
-                    <acme:button url="audit/administrator/asociateNewsPaper.do?auditId=${audit.id}" code="audit.asociateNewsPaper"/>
-                </jstl:if>
-
-                <jstl:if test="${audit.newsPaper eq null} ">
-                    <spring:message code="audit.asociated" var="asociated"/> <jstl:out value="${asociated}" />
-                </jstl:if>
-
-                <jstl:if test="${audit.finalMode eq false} ">
-                    <spring:message code="audit.noFinalMode" var="noFinalMode"/> <jstl:out value="${noFinalMode}" />
-                </jstl:if>
-            </display:column>
-        </security:authorize>
-
-        <security:authorize access="hasRole('ADMINISTRATOR')" >
-            <display:column >
-
-                <acme:button url="audit/administrator/display.do?auditId=${audit.id}" code="audit.display"/>
-
-            </display:column>
-        </security:authorize>
-
-        <security:authorize access="hasRole('ADMINISTRATOR')" >
-            <display:column>
-                <acme:button url="audit/administrator/delete.do?auditId=${audit.id}" code="audit.delete" />
-            </display:column>
-        </security:authorize>
-
     </display:table>
+
+
 </fieldset>
 <br/>
 

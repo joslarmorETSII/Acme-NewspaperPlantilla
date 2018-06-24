@@ -77,8 +77,7 @@ public class AuditService {
     }
 
     public void delete(final Audit audit) {
-        this.checkByPrincipal(audit);
-
+        Assert.isTrue(checkByPrincipal(audit));
         this.auditRepository.delete(audit);
     }
 

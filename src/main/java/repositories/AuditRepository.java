@@ -18,5 +18,11 @@ public interface AuditRepository extends JpaRepository<Audit,Integer> {
     Collection<Audit> AuditForDisplay(int newsPaperId);
 
 
+/*
+    Query 1.
+    select count(n1)*1.0 /(select count(n2)*1.0 from NewsPaper n2 ) from NewsPaper n1 where n1.audits.size >0;
 
+    Query 2.
+            1. select a from Administrator a where a.audits.size>=(select max(a2.audits.size) from Administrator a2 );
+*/
 }

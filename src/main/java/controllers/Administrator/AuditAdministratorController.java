@@ -134,13 +134,11 @@ public class AuditAdministratorController extends AbstractController {
     public ModelAndView delete(@RequestParam int auditId){
         ModelAndView result;
         Audit audit= auditService.findOne(auditId);
-        try{
+
 
             auditService.delete(audit);
             result = new ModelAndView("redirect:list.do");
-        }catch (Throwable oops){
-            result = createEditModelAndView(audit,"audit.commit.error");
-        }
+
 
         return result;
     }
@@ -180,27 +178,6 @@ public class AuditAdministratorController extends AbstractController {
         return result;
     }
 
-    // Asociate a newsPaper -------------------------------------------------------------------------
-
-    @RequestMapping(value = "/asociateNewspaper", method = RequestMethod.POST)
-    public ModelAndView asociateNewspaper(@Valid final  int auditId, final BindingResult binding) {
-        ModelAndView result;
-        Audit audit= auditService.findOne(auditId);
-        Collection<NewsPaper> newsPapers=newsPaperService.findAll();
-        newsPapers.remove(audit.getNewsPaper());
-
-
-        if (binding.hasErrors())
-            result = this.createEditModelAndView(audit);
-        else
-            try {
-                this.auditService.save(audit);
-                result = new ModelAndView("redirect:list.do");
-            } catch (final Throwable oops) {
-                result = this.createEditModelAndView(audit, "audit.commit.error");
-            }
-        return result;
-    }
 
 
     // Ancillary methods ------------------------------------------------------

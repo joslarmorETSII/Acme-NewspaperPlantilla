@@ -913,7 +913,7 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		<property name="system" value="true" />
 		<property name="messages">
 			<list>
-				<ref bean="message1"/>
+				<null/>
 			</list>
 		</property>
 		<property name="actor" ref="administrator2" />
@@ -927,7 +927,7 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 				<null/>
 			</list>
 		</property>
-		<property name="actor" ref="administrator" />
+		<property name="actor" ref="administrator2" />
 	</bean>
 
 	<bean id="spambox0" class="domain.Folder">
@@ -1354,7 +1354,7 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 
 	<bean id="audit2" class="domain.Audit">
 		<property name="title" value="audit for newsPaper2"/>
-		<property name="description" value="description1"/>
+		<property name="description" value="description2"/>
 		<property name="ticker" value="22:AA:34:12022:07"/>
 		<property name="moment" value="2019/03/20 10:00"/>
 		<property name="administrator" ref="administrator"/>
@@ -1366,7 +1366,7 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 
 	<bean id="audit3" class="domain.Audit">
 		<property name="title" value="audit for newsPaper1"/>
-		<property name="description" value="description1"/>
+		<property name="description" value="description3"/>
 		<property name="ticker" value="22:AA:34:13022:07"/>
 		<property name="moment" value="2019/03/20 10:00"/>
 		<property name="administrator" ref="administrator2"/>
@@ -1378,7 +1378,7 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 
 	<bean id="audit4" class="domain.Audit">
 		<property name="title" value="audit for newsPaper2"/>
-		<property name="description" value="description1"/>
+		<property name="description" value="description4"/>
 		<property name="ticker" value="22:AA:34:22022:07"/>
 		<property name="moment" value="2019/03/20 10:00"/>
 		<property name="administrator" ref="administrator2"/>

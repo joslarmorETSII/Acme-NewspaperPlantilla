@@ -35,7 +35,7 @@
     <form:errors path="ticker" cssClass="error"/>
     <br/>
 
-    <acme:textbox path="gauge" code="audit.gauge" />
+    <acme:textbox path="gauge" code="audit.gauge" placeHolder="Range 1-3 points"/>
 
     <form:label path="moment"><spring:message code="audit.moment"/></form:label>
     <form:input path="moment" placeholder="dd/mm/yyyy hh:mm"/>
