@@ -16,7 +16,7 @@ import java.util.Date;
 @Access(AccessType.PROPERTY)
 public class Note extends DomainEntity{
 
-    // Constructors -----------------------------------------------------------
+    // Constructors ----------------------------------------------------------- POr amor vendi el iphone
 
     public Note() {
         super();
