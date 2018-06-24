@@ -124,7 +124,7 @@ public class AuditService {
     }
 
 
-    public boolean checkByPrincipal(Audit audit){
+   /* public boolean checkByPrincipal(Audit audit){
         Boolean res= false;
         Administrator administrator = administratorService.findByPrincipal();
         if(administrator!=null) {
@@ -134,7 +134,16 @@ public class AuditService {
         }
         return res;
 
-    }
+    }*/
+
+   public boolean checkByPrincipal(Audit audit) {
+       Boolean res = false;
+       Administrator administrator = administratorService.findByPrincipal();
+       if (administrator.equals(audit.getAdministrator())) {
+           res = true;
+       }
+       return res;
+   }
 
     public Collection<Audit> AuditForDisplay(int newsPaperId){
         return auditRepository.AuditForDisplay(newsPaperId);
