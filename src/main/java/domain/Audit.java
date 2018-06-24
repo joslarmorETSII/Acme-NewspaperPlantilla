@@ -30,7 +30,7 @@ public class Audit extends DomainEntity {
 
     // Attributes --------------------------------------------------------------------
 
-    private String	code;
+    private String	ticker;
     private Integer	gauge;
     private String	title;
     private String	description;
@@ -41,12 +41,12 @@ public class Audit extends DomainEntity {
     @Column(unique = true)
     @NotBlank
     @Pattern(regexp = "^\\d{2}:\\w{2}:\\d{2}:\\d{5}:\\d{2}$")
-    public String getCode() {
-        return this.code;
+    public String getTicker() {
+        return this.ticker;
     }
 
-    public void setCode(final String code) {
-        this.code = code;
+    public void setTicker(final String ticker) {
+        this.ticker = ticker;
     }
     @NotNull
     @Range(min = 1, max = 3)

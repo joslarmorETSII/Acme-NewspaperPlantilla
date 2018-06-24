@@ -24,7 +24,7 @@
     <form:hidden path="id" />
     <form:hidden path="version" />
     <form:hidden path="administrator"/>
-    <form:hidden path="code"/>
+    <form:hidden path="ticker"/>
     <form:hidden path="title"/>
     <form:hidden path="description"/>
     <form:hidden path="gauge"/>

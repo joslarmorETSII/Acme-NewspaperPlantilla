@@ -55,6 +55,7 @@
 <br/>
 
 <fieldset>
+    <legend>Audits Of The Newspaper</legend>
     <display:table name="audits" id="audit" pagesize="5" class="displaytag" requestURI="audit/actor/list.do">
 
         <jstl:choose>

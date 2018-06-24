@@ -56,8 +56,8 @@
         <spring:message code="audit.gauge" var="headerTag" />
         <display:column property="gauge" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="audit.code" var="headerTag" />
-        <display:column property="code" title="${headerTag}" style="${style}"/>
+        <spring:message code="audit.ticker" var="headerTag" />
+        <display:column property="ticker" title="${headerTag}" style="${style}"/>
 
         <spring:message var="moment" code="audit.moment"/>
         <spring:message var="formatDate" code="event.format.date"/>

@@ -49,8 +49,8 @@ public class AuditService {
 
         final Administrator administrator = this.administratorService.findByPrincipal();
         audit = new Audit();
-        String code= generateCode();
-        audit.setCode(code);
+        String ticker= generateTicker();
+        audit.setTicker(ticker);
         audit.setAdministrator(administrator);
 
         return audit;
@@ -96,7 +96,7 @@ public class AuditService {
 
     // Ancillary methods
 
-    public String generateCode() {
+    public String generateTicker() {
         String letter="";
         String result;
         Audit audit;
@@ -115,7 +115,7 @@ public class AuditService {
                 letter+= letters.charAt(index);
             }
             result=yy+":"+letter+":"+mm+":"+digit5+":"+dd;
-            audit = this.auditRepository.findByCode(result);
+            audit = this.auditRepository.findByTicker(result);
             if (audit == null)
                 break;
         }

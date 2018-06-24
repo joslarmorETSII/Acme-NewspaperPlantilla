@@ -30,7 +30,7 @@
 <b><spring:message code="audit.description"/>:&nbsp; </b><jstl:out value="${audit.description}"/>
 <br/>
 
-<b><spring:message code="audit.code"/>:&nbsp; </b><jstl:out value="${audit.code}"/>
+<b><spring:message code="audit.ticker"/>:&nbsp; </b><jstl:out value="${audit.ticker}"/>
 <br/>
 
 <b><spring:message code="audit.gauge"/>:&nbsp; </b><jstl:out value="${audit.gauge}"/>

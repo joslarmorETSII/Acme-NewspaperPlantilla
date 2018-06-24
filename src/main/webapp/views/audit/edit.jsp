@@ -23,16 +23,16 @@
     <form:hidden path="version"/>
     <form:hidden path="administrator"/>
     <form:hidden path="newsPaper"/>
-    <form:hidden path="code"/>
+    <form:hidden path="ticker"/>
 
 
     <acme:textbox path="title" code="audit.title"/>
 
     <acme:textarea path="description" code="audit.description" />
 
-    <form:label path="code"><spring:message code="audit.code"/>:&nbsp;</form:label>
-    <input value="${audit.code}" readonly="readonly"/>
-    <form:errors path="code" cssClass="error"/>
+    <form:label path="ticker"><spring:message code="audit.ticker"/>:&nbsp;</form:label>
+    <input value="${audit.ticker}" readonly="readonly"/>
+    <form:errors path="ticker" cssClass="error"/>
     <br/>
 
     <acme:textbox path="gauge" code="audit.gauge" />

@@ -11,8 +11,8 @@ import java.util.Collection;
 @Repository
 public interface AuditRepository extends JpaRepository<Audit,Integer> {
 
-    @Query("select a from Audit a where a.code=?1")
-    Audit findByCode(String code);
+    @Query("select a from Audit a where a.ticker=?1")
+    Audit findByTicker(String code);
 
     @Query("select DISTINCT a from NewsPaper n join n.audits a where n.id = ?1 and ( a.moment = null or a.moment <= CURRENT_TIMESTAMP) ")
     Collection<Audit> AuditForDisplay(int newsPaperId);
