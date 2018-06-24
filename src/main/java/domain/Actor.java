@@ -16,7 +16,7 @@ import java.util.Collection;
 public abstract class Actor extends DomainEntity {
 
 
-    // Constructors -----------------------------------------------------------
+    // Constructors ----------------------------------------------------------- prueba
 
     public Actor() {
         super();
