@@ -25,5 +25,9 @@ public interface NoteRepository extends JpaRepository<Note,Integer> {
         Query 2.
         1. select a from Administrator a where a.notes.size>=(select max(a2.notes.size) from Administrator a2 );
 
+
+
+select DISTINCT n.notes from NewsPaper n join n.notes a where n.id = 154 and ( a.displayMoment = null or a.displayMoment <= CURRENT_TIMESTAMP);
+
      */
 }

@@ -65,7 +65,7 @@
 <fieldset>
     <legend>Notes</legend>
 
-    <display:table name="notes" pagesize="5" class="displaytag" requestURI="note/administrator/list.do" id="row">
+    <display:table name="notes" pagesize="5" class="displaytag" requestURI="${requestURI}" id="row">
 
         <jstl:choose>
             <jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>

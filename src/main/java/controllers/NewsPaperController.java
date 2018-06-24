@@ -128,6 +128,7 @@ public class NewsPaperController extends AbstractController {
         result.addObject("newsPaper", newsPaper);
         result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
+        result.addObject("requestURI","newsPaper/display.do");
 
         return result;
     }
@@ -144,7 +145,7 @@ public class NewsPaperController extends AbstractController {
         result.addObject("newsPaper", newsPaper);
         result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
         result.addObject("cancelURI", "newsPaper/listAll.do");
-
+        result.addObject("requestURI","newsPaper/displayAnonymous.do");
 
         return result;
     }

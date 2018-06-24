@@ -69,6 +69,8 @@ public class NewsPaperAgentController extends AbstractController {
         result.addObject("newsPaper", newsPaper);
         result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
+        result.addObject("requestURI","newsPaper/agent/display.do");
+
 
 
         return result;

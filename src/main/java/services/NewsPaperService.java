@@ -140,9 +140,8 @@ public class NewsPaperService {
             }
         }
         // Delete Associated notes
-        for(Note n : newsPaper.getNotes()){
-            noteService.delete(n);
-        }
+
+        noteService.deleteAll(newsPaper.getNotes());
         this.advertisementService.deleteAll(newsPaper);
         this.volumeService.delete(newsPaper);
         this.articleService.deleteAll(newsPaper.getArticles());

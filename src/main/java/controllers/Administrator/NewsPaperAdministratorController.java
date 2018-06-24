@@ -112,6 +112,7 @@ public class NewsPaperAdministratorController extends AbstractController {
         result.addObject("newsPaper", newsPaper);
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
         result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
+        result.addObject("requestURI","newsPaper/administrator/display.do");
 
         session.setAttribute("cancelUriSession", request.getRequestURI()+ "?newsPaperId=" + newsPaperId);
         return result;

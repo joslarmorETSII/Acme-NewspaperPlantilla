@@ -213,6 +213,8 @@ public class NewsPaperUserController extends AbstractController {
         result.addObject("newsPaper", newsPaper);
         result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
         result.addObject("cancelURI", "newsPaper/user/list.do");
+        result.addObject("requestURI","newsPaper/user/display.do");
+
 
 
         return result;

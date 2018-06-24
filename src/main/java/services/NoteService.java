@@ -119,4 +119,12 @@ public class NoteService {
     public Collection<Note> findNotesToDisplay(int newsPaperId) {
         return noteRepository.findNotesToDisplay(newsPaperId);
     }
+
+    public void flush() {
+        noteRepository.flush();
+    }
+
+    public void deleteAll(Collection<Note> notes) {
+        noteRepository.delete(notes);
+    }
 }

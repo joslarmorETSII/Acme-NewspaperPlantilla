@@ -62,6 +62,10 @@
 				<spring:message code="note.addNewsPaper" />
 			</a>
 		</jstl:if>
+
+		<jstl:if test="${row.finalMode eq true and row.newsPaper ne null}">
+			<spring:message code="general.asociated"/>
+		</jstl:if>
 	</display:column>
 
 	<display:column>
