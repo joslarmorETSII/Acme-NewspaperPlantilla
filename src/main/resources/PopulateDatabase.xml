@@ -1359,7 +1359,7 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		<property name="moment" value="2019/03/20 10:00"/>
 		<property name="administrator" ref="administrator"/>
 		<property name="gauge" value="1"/>
-		<property name="finalMode" value="true"/>
+		<property name="finalMode" value="false"/>
 		<property name="newsPaper" > <null/>
 		</property>
 	</bean>

@@ -70,6 +70,7 @@ public class AuditService {
         Audit saved = null;
 
         Assert.notNull(audit);
+
         this.checkByPrincipal(audit);
         saved = this.auditRepository.save(audit);
 
@@ -89,6 +90,7 @@ public class AuditService {
 
         final Audit audit = this.auditRepository.findOne(auditId);
         Assert.isTrue(this.checkByPrincipal(audit));
+        Assert.isTrue(!audit.getFinalMode());
         return audit;
 
     }
