@@ -2,7 +2,20 @@
 <module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/src/main/resources/spring/config/converters.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/config/data.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/datasource.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/config/i18n-l10n.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/junit.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/config/packages.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/PopulateDatabase.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/config/security.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/servlet.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/spring/config/tiles.xml</file>
+        </fileset>
+      </configuration>
     </facet>
     <facet type="web" name="Web">
       <configuration>
