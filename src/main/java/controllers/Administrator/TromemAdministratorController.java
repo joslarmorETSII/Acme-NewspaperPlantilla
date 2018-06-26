@@ -3,7 +3,7 @@ package controllers.Administrator;
 import controllers.AbstractController;
 
 import domain.Administrator;
-import domain.Note;
+import domain.Tromem;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,13 +20,13 @@ import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
-@RequestMapping("/note/administrator")
-public class NoteAdministratorController extends AbstractController {
+@RequestMapping("/tromem/administrator")
+public class TromemAdministratorController extends AbstractController {
 
     // Services --------------------------------------------
 
     @Autowired
-    private NoteService noteService;
+    private TromemService tromemService;
 
     @Autowired
     private NewsPaperService newsPaperService;
@@ -37,7 +37,7 @@ public class NoteAdministratorController extends AbstractController {
 
     // Constructor --------------------------------------------
 
-    public NoteAdministratorController() {
+    public TromemAdministratorController() {
         super();
     }
 
@@ -46,10 +46,10 @@ public class NoteAdministratorController extends AbstractController {
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView create() {
         ModelAndView result;
-        Note note;
+        Tromem tromem;
 
-        note = noteService.create();
-        result = createEditModelAndView(note);
+        tromem = tromemService.create();
+        result = createEditModelAndView(tromem);
 
         return result;
     }
@@ -60,13 +60,13 @@ public class NoteAdministratorController extends AbstractController {
     public ModelAndView list() {
         ModelAndView result;
         Administrator administrator;
-        Collection<Note> notes;
+        Collection<Tromem> tromems;
 
         administrator = administratorService.findByPrincipal();
-        notes = administrator.getNotes();
-        result = new ModelAndView("note/list");
-        result.addObject("notes", notes);
-        result.addObject("requestURI","note/administrator/list.do");
+        tromems = administrator.getTromems();
+        result = new ModelAndView("tromem/list");
+        result.addObject("tromems", tromems);
+        result.addObject("requestURI","tromem/administrator/list.do");
 
         return result;
 
@@ -75,29 +75,31 @@ public class NoteAdministratorController extends AbstractController {
     //  Edition ----------------------------------------------------------------
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView save(@RequestParam int noteId) {
+    public ModelAndView save(@RequestParam int tromemId) {
         ModelAndView result;
-        Note note;
+        Tromem tromem;
 
-        note = noteService.findOneToEdit(noteId);
-        result = new ModelAndView("note/edit");
-        result.addObject("note",note);
+        tromem = tromemService.findOneToEdit(tromemId);
+        result = new ModelAndView("tromem/edit");
+        result.addObject("tromem",tromem);
         result.addObject("newsPapers", newsPaperService.findPublishedNewsPaper());
 
         return result;
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-    public ModelAndView save(@Valid Note note, BindingResult binding) {
+    public ModelAndView save(@Valid Tromem tromem, BindingResult binding) {
         ModelAndView result;
+        tromemService.checkTitle(tromem,binding);
+        tromemService.checkDescription(tromem,binding);
         if (binding.hasErrors())
-            result = this.createEditModelAndView(note);
+            result = this.createEditModelAndView(tromem);
         else
             try {
-                noteService.save(note);
+                tromemService.save(tromem);
                 result = new ModelAndView("redirect:list.do");
             } catch (final Throwable oops) {
-                result = this.createEditModelAndView(note, "article.commit.error");
+                result = this.createEditModelAndView(tromem, "article.commit.error");
             }
         return result;
     }
@@ -105,25 +107,25 @@ public class NoteAdministratorController extends AbstractController {
     // Add to newspaper ------------------------------------------------------
 
     @RequestMapping(value = "/addToNewsPaper", method = RequestMethod.GET)
-    public ModelAndView addToNewsPaper(@RequestParam int noteId) {
+    public ModelAndView addToNewsPaper(@RequestParam int tromemId) {
         ModelAndView result;
-        Note note;
+        Tromem tromem;
 
-        note = noteService.findOne(noteId);
-        Assert.isTrue(note.getFinalMode(),"must be on final mode");
-        Assert.isNull(note.getNewsPaper(),"Assigned to newspaper");
-        result = new ModelAndView("note/addToNewsPaper");
-        result.addObject("note",note);
+        tromem = tromemService.findOne(tromemId);
+        Assert.isTrue(tromem.getFinalMode(),"must be on final mode");
+        Assert.isNull(tromem.getNewsPaper(),"Assigned to newspaper");
+        result = new ModelAndView("tromem/addToNewsPaper");
+        result.addObject("tromem",tromem);
         result.addObject("newsPapers", newsPaperService.findPublishedNewsPaper());
 
         return result;
     }
 
     @RequestMapping(value = "/addToNewsPaper", method = RequestMethod.POST,params = "save")
-    public ModelAndView addToNewsPaper(@Valid Note note, BindingResult binding) {
+    public ModelAndView addToNewsPaper(@Valid Tromem tromem, BindingResult binding) {
         ModelAndView result;
 
-        noteService.save(note);
+        tromemService.save(tromem);
         result = new ModelAndView("redirect:list.do");
 
         return result;
@@ -131,30 +133,30 @@ public class NoteAdministratorController extends AbstractController {
 
     // delete
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public ModelAndView delete(@RequestParam int noteId) {
+    public ModelAndView delete(@RequestParam int tromemId) {
         ModelAndView result;
-        Note note;
+        Tromem tromem;
 
-        note = noteService.findOne(noteId);
-        noteService.delete(note);
+        tromem = tromemService.findOne(tromemId);
+        tromemService.delete(tromem);
         result = new ModelAndView("redirect:list.do");
 
         return result;
     }
     // Ancillary methods ------------------------------------------------------
 
-    protected ModelAndView createEditModelAndView(Note note) {
+    protected ModelAndView createEditModelAndView(Tromem tromem) {
         ModelAndView result;
 
-        result = this.createEditModelAndView(note, null);
+        result = this.createEditModelAndView(tromem, null);
         return result;
     }
 
-    protected ModelAndView createEditModelAndView(Note note, String messageCode) {
+    protected ModelAndView createEditModelAndView(Tromem tromem, String messageCode) {
         ModelAndView result;
 
-        result = new ModelAndView("note/edit");
-        result.addObject("note", note);
+        result = new ModelAndView("tromem/edit");
+        result.addObject("tromem", tromem);
         result.addObject("newsPapers", newsPaperService.findPublishedNewsPaper());
         result.addObject("message", messageCode);
 

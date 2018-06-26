@@ -16,16 +16,16 @@ public class Administrator extends Actor {
         super();
     }
     // Relationships ----------------------------------------------------------
-    private Collection<Note> notes;
+    private Collection<Tromem> tromems;
 
     @NotNull
     @Valid
     @OneToMany(mappedBy = "administrator")
-    public Collection<Note> getNotes() {
-        return notes;
+    public Collection<Tromem> getTromems() {
+        return tromems;
     }
 
-    public void setNotes(Collection<Note> notes) {
-        this.notes = notes;
+    public void setTromems(Collection<Tromem> tromems) {
+        this.tromems = tromems;
     }
 }

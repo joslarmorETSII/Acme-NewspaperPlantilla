@@ -1,24 +1,24 @@
 package converters;
 
-import domain.Note;
+import domain.Tromem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import repositories.NoteRepository;
+import repositories.TromemRepository;
 
 import javax.transaction.Transactional;
 
 @Component
 @Transactional
-public class StringToNoteConverter implements Converter<String, Note> {
+public class StringToTromemConverter implements Converter<String, Tromem> {
 
     @Autowired
-    private NoteRepository noteRepository;
+    private TromemRepository tromemRepository;
 
     @Override
-    public Note convert(String text) {
-        Note result;
+    public Tromem convert(String text) {
+        Tromem result;
         int id;
 
         try{
@@ -26,7 +26,7 @@ public class StringToNoteConverter implements Converter<String, Note> {
                 result = null;
             }else{
                 id = Integer.valueOf(text);
-                result = noteRepository.findOne(id);
+                result = tromemRepository.findOne(id);
             }
         }catch(Throwable oops){
             throw new IllegalArgumentException(oops);

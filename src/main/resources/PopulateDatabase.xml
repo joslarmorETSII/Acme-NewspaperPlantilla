@@ -19,8 +19,8 @@
 	<!-- User accounts -->
 
 	<bean id="userAccount1" class="security.UserAccount">
-		<property name="username" value="administrator" />
-		<property name="password" value="200ceb26807d6bf99fd6f4f0d1ca54d4" />
+		<property name="username" value="admin" />
+		<property name="password" value="21232f297a57a5a743894a0e4a801fc3" />
 		<property name="authorities">
 			<list>
 				<bean class="security.Authority">
@@ -132,10 +132,10 @@
 				<ref bean="notificationbox1"/>
 			</list>
 		</property>
-		<property name="notes">
+		<property name="tromems">
 			<list>
-				<ref bean="note1"/>
-				<ref bean="note2"/>
+				<ref bean="tromem1"/>
+				<ref bean="tromem2"/>
 			</list>
 		</property>
 	</bean>
@@ -156,10 +156,10 @@
 				<ref bean="notificationbox0"/>
 			</list>
 		</property>
-		<property name="notes">
+		<property name="tromems">
 			<list>
-				<ref bean="note3"/>
-				<ref bean="note4"/>
+				<ref bean="tromem3"/>
+				<ref bean="tromem4"/>
 			</list>
 		</property>
 	</bean>
@@ -448,12 +448,11 @@
 				<ref bean="volume1" />
 			</list>
 		</property>
-		<property name="notes">
+		<property name="tromems">
 			<list>
-				<ref bean="note1"/>
-				<ref bean="note2"/>
-				<ref bean="note3"/>
-				<ref bean="note4"/>
+				<ref bean="tromem1"/>
+				<ref bean="tromem3"/>
+				<ref bean="tromem4"/>
 			</list>
 		</property>
 	</bean>
@@ -489,7 +488,7 @@
 				<null/>
 			</list>
 		</property>
-		<property name="notes">
+		<property name="tromems">
 			<list>
 				<null/>
 			</list>
@@ -527,7 +526,7 @@
 				<null />
 			</list>
 		</property>
-		<property name="notes">
+		<property name="tromems">
 			<list>
 				<null/>
 			</list>
@@ -564,7 +563,7 @@
 				<null />
 			</list>
 		</property>
-		<property name="notes">
+		<property name="tromems">
 			<list>
 				<null/>
 			</list>
@@ -1324,6 +1323,8 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		<property name="actorSender" ref="user1" />
 	</bean>
 
+	<!-- Tromems -->
+
 	<bean id="message2" class="domain.Message" >
 		<property name="moment" value="2018/03/20 10:00" />
 		<property name="subject" value="Welcome" />
@@ -1338,10 +1339,10 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		<property name="actorSender" ref="administrator" />
 	</bean>
 
-	<bean id="note1" class="domain.Note">
-		<property name="ticker" value="18-12-20-UP"/>
-		<property name="title" value="Note title1"/>
-		<property name="description" value="Note description"/>
+	<bean id="tromem1" class="domain.Tromem">
+		<property name="ticker" value="333444:18:12:20"/>
+		<property name="title" value="Tromem title1"/>
+		<property name="description" value="Tromem description"/>
 		<property name="gauge" value="2"/>
 		<property name="displayMoment" value="01/07/2019 11:00"/>
 		<property name="administrator" ref="administrator"/>
@@ -1349,21 +1350,23 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
         <property name="finalMode" value="true"/>
     </bean>
 
-	<bean id="note2" class="domain.Note">
-		<property name="ticker" value="20-12-20-Cv"/>
-		<property name="title" value="Note title2"/>
-		<property name="description" value="Note description 2"/>
+	<bean id="tromem2" class="domain.Tromem">
+		<property name="ticker" value="111222:20:12:20"/>
+		<property name="title" value="Tromem title2"/>
+		<property name="description" value="Tromem description 2"/>
 		<property name="gauge" value="2"/>
 		<property name="displayMoment" value="01/07/2019 11:00"/>
 		<property name="administrator" ref="administrator"/>
-		<property name="newsPaper" ref="newsPaper1"/>
+		<property name="newsPaper" >
+			<null/>
+		</property>
 		<property name="finalMode" value="false"/>
 	</bean>
 
-	<bean id="note3" class="domain.Note">
-		<property name="ticker" value="18-12-20-0P"/>
-		<property name="title" value="Note title3"/>
-		<property name="description" value="Note description 3"/>
+	<bean id="tromem3" class="domain.Tromem">
+		<property name="ticker" value="111111:18:12:20"/>
+		<property name="title" value="Tromem title3"/>
+		<property name="description" value="Tromem description 3"/>
 		<property name="gauge" value="3"/>
 		<property name="displayMoment" >
 			<null/>
@@ -1373,15 +1376,15 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		<property name="finalMode" value="true"/>
 	</bean>
 
-	<bean id="note4" class="domain.Note">
-		<property name="ticker" value="18-12-20-IH"/>
-		<property name="title" value="Note title4"/>
-		<property name="description" value="Note description 4"/>
+	<bean id="tromem4" class="domain.Tromem">
+		<property name="ticker" value="123456:18:12:20"/>
+		<property name="title" value="Tromem title4"/>
+		<property name="description" value="Tromem description 4"/>
 		<property name="gauge" value="1"/>
 		<property name="displayMoment" value="01/07/2019 11:00"/>
 		<property name="administrator" ref="administrator2"/>
 		<property name="newsPaper" ref="newsPaper1"/>
-		<property name="finalMode" value="false"/>
+		<property name="finalMode" value="true"/>
 	</bean>
 
 </beans>

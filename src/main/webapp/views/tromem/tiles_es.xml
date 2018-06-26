@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+       
+<tiles-definitions>
+
+	<definition name="tromem/edit" extends="master.page">
+		<put-attribute name="title" value="Editar tromem" />
+		<put-attribute name="body" value="/views/tromem/edit.jsp" />
+	</definition>
+
+	<definition name="tromem/list" extends="master.page">
+		<put-attribute name="title" value="Lista de tromems" />
+		<put-attribute name="body" value="/views/tromem/list.jsp" />
+	</definition>
+
+	<definition name="tromem/addToNewsPaper" extends="master.page">
+		<put-attribute name="title" value="Adjuntar tromem a newspaper" />
+		<put-attribute name="body" value="/views/tromem/addToNewsPaper.jsp" />
+	</definition>
+	
+</tiles-definitions>

@@ -46,7 +46,7 @@ public class NewsPaperCustomerController extends AbstractController{
     private SubscribeNewsPaperService subscribeNewsPaperService;
 
     @Autowired
-    private NoteService noteService;
+    private TromemService tromemService;
 
     // Listing  --------------------------------------------------------------
     //Listado de newspaper donde estoy suscrito
@@ -236,7 +236,7 @@ public class NewsPaperCustomerController extends AbstractController{
         result.addObject("newsPaper", newsPaper);
         result.addObject("cancelURI", "newsPaper/listAll.do");
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
-        result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
+        result.addObject("tromems",tromemService.findTromemsToDisplay(newsPaperId));
         result.addObject("requestURI","newsPaper/customer/display.do");
 
 

@@ -46,7 +46,7 @@ public class ArticleServiceTest extends AbstractTest {
  /*  FUNCTIONAL REQUIREMENT:
             * An actor who is authenticated as a user must be able to:
                -. Write an article and attach it to any newspaper that has not been published, yet.
-                   Note that articles may be saved in draft mode, which allows to modify them later, or
+                   Tromem that articles may be saved in draft mode, which allows to modify them later, or
                    final model, which freezes them forever.
     */
 

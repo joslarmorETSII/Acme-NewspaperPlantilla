@@ -21,45 +21,45 @@
 </jstl:if>
 
 
-<display:table name="notes" pagesize="5" class="displaytag" requestURI="note/administrator/list.do" id="row">
+<display:table name="tromems" pagesize="5" class="displaytag" requestURI="tromem/administrator/list.do" id="row">
 
 	<jstl:choose>
-		<jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
-		<jstl:when test="${row.gauge eq '2'}">  <jstl:set var="style" value="background-color: Moccasin; color: black"/> </jstl:when>
-		<jstl:when test="${row.gauge eq '3'}">  <jstl:set var="style" value="background-color: Blue; color: white"/> </jstl:when>
+		<jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: DarkOrange; color: black"/> </jstl:when>
+		<jstl:when test="${row.gauge eq '2'}">  <jstl:set var="style" value="background-color: GreenYellow; color: black"/> </jstl:when>
+		<jstl:when test="${row.gauge eq '3'}">  <jstl:set var="style" value="background-color: DarkRed; color: white"/> </jstl:when>
 	</jstl:choose>
 
 	<display:column title="${headerTag}" >
 		<jstl:if test="${row.finalMode eq false}">
-			<a href="note/administrator/edit.do?noteId=${row.id}">
-				<spring:message code="note.edit" />
+			<a href="tromem/administrator/edit.do?tromemId=${row.id}">
+				<spring:message code="tromem.edit" />
 			</a>
 		</jstl:if>
 	</display:column>
 
-	<spring:message code="note.ticker" var="headerTag" />
+	<spring:message code="tromem.ticker" var="headerTag" />
 	<display:column property="ticker" title="${headerTag}" style="${style}"/>
 
-	<spring:message code="note.title" var="headerTag" />
+	<spring:message code="tromem.title" var="headerTag" />
 	<display:column property="title" title="${headerTag}" style="${style}"/>
 
-	<spring:message code="note.description" var="headerTag" />
+	<spring:message code="tromem.description" var="headerTag" />
 	<display:column property="description" title="${headerTag}" style="${style}"/>
 
-	<spring:message code="note.gauge" var="headerTag" />
+	<spring:message code="tromem.gauge" var="headerTag" />
 	<display:column property="gauge" title="${headerTag}" style="${style}"/>
 
-	<spring:message code="note.newsPaper" var="headerTag" />
+	<spring:message code="tromem.newsPaper" var="headerTag" />
 	<display:column property="newsPaper.title" title="${headerTag}" style="${style}"/>
 
 
-	<spring:message code="note.displayMoment" var="headerTag" />
+	<spring:message code="tromem.displayMoment" var="headerTag" />
 	<display:column property="displayMoment" title="${headerTag}" format="${formatDate}" style="${style}" />
 
 	<display:column>
 		<jstl:if test="${row.finalMode eq true and row.newsPaper eq null}">
-			<a href="note/administrator/addToNewsPaper.do?noteId=${row.id}">
-				<spring:message code="note.addNewsPaper" />
+			<a href="tromem/administrator/addToNewsPaper.do?tromemId=${row.id}">
+				<spring:message code="tromem.addNewsPaper" />
 			</a>
 		</jstl:if>
 
@@ -69,15 +69,15 @@
 	</display:column>
 
 	<display:column>
-		<a href="note/administrator/delete.do?noteId=${row.id}">
-				<spring:message code="note.delete" />
+		<a href="tromem/administrator/delete.do?tromemId=${row.id}">
+				<spring:message code="tromem.delete" />
 			</a>
 	</display:column>
 
 </display:table>
 
 
-<acme:button code="note.create" url="note/administrator/create.do"/>
+<acme:button code="tromem.create" url="tromem/administrator/create.do"/>
 
 
 <input type="button" name="cancel" value="<spring:message code="general.cancel" />" onclick="javascript: relativeRedir('welcome/index.do');" />

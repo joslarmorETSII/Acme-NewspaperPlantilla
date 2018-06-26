@@ -62,7 +62,7 @@ public class NewsPaperService {
     private SubscribeVolumeService subscribeVolumeService;
 
     @Autowired
-    private NoteService noteService;
+    private TromemService tromemService;
 
     // Constructors -----------------------------------------------------------
 
@@ -87,7 +87,7 @@ public class NewsPaperService {
         res.setSubscriptions(new ArrayList<SubscribeNewsPaper>());
         res.setAdvertisements(advertisements);
         res.setVolumes(volumes);
-        res.setNotes(new ArrayList<Note>());
+        res.setTromems(new ArrayList<Tromem>());
         return res;
     }
 
@@ -139,9 +139,9 @@ public class NewsPaperService {
                 this.subscribeVolumeService.deleteCustomerVolume(v1);
             }
         }
-        // Delete Associated notes
+        // Delete Associated tromems
 
-        noteService.deleteAll(newsPaper.getNotes());
+        tromemService.deleteAll(newsPaper.getTromems());
         this.advertisementService.deleteAll(newsPaper);
         this.volumeService.delete(newsPaper);
         this.articleService.deleteAll(newsPaper.getArticles());

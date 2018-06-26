@@ -1,7 +1,7 @@
 package services;
 
 import domain.Chirp;
-import domain.Note;
+import domain.Tromem;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,26 +20,26 @@ import java.util.Date;
         "classpath:spring/junit.xml"
 })
 @RunWith(SpringJUnit4ClassRunner.class)
-public class NoteServiceTest extends AbstractTest {
+public class TromemServiceTest extends AbstractTest {
 
     // The SUT ---------------------------------
     @Autowired
-    private NoteService noteService;
+    private TromemService tromemService;
 
     @Autowired
     private UserService userService;
 
     /*  FUNCTIONAL REQUIREMENT:
-     * An administrator writes a Note, saves it in draft mode, then changes it, and saves it in final mode.  */
+     * An administrator writes a Tromem, saves it in draft mode, then changes it, and saves it in final mode.  */
 
-    public void noteCreateEditTest(String username, String title, String moment, String description,
+    public void tromemCreateEditTest(String username, String title, String moment, String description,
                                 boolean  finalMode, Integer gauge, Class<?> expected) {
         Class<?> caught=null;
         startTransaction();
         try {
             this.authenticate(username);
 
-            Note result = noteService.create();
+            Tromem result = tromemService.create();
 
             result.setTitle(title);
             DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
@@ -48,13 +48,13 @@ public class NoteServiceTest extends AbstractTest {
             result.setFinalMode(finalMode);
             result.setGauge(gauge);
 
-            Note saved= noteService.save(result);
-            noteService.flush();
+            Tromem saved= tromemService.save(result);
+            tromemService.flush();
 
             // editar
             saved.setFinalMode(true);
-            noteService.save(saved);
-            noteService.flush();
+            tromemService.save(saved);
+            tromemService.flush();
 
         } catch (final Throwable oops) {
             caught = oops.getClass();
@@ -68,7 +68,7 @@ public class NoteServiceTest extends AbstractTest {
     // ===================================================
 
     @Test
-    public void driverNoteCreateEditTest() {
+    public void driverTromemCreateEditTest() {
 
         final Date date = new Date();
 
@@ -92,7 +92,7 @@ public class NoteServiceTest extends AbstractTest {
 
         };
         for (int i = 0; i < testingData.length; i++)
-            noteCreateEditTest((String) testingData[i][0],(String)testingData[i][1] ,
+            tromemCreateEditTest((String) testingData[i][0],(String)testingData[i][1] ,
                     (String)testingData[i][2],(String)testingData[i][3],(Boolean)testingData[i][4],
                     (Integer) testingData[i][5],(Class<?>) testingData[i][6]);
     }

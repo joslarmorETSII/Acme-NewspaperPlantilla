@@ -63,32 +63,32 @@
 <security:authorize access="isAuthenticated()">
 
 <fieldset>
-    <legend>Notes</legend>
+    <legend><spring:message code="tromems.list"/> </legend>
 
-    <display:table name="notes" pagesize="5" class="displaytag" requestURI="${requestURI}" id="row">
+    <display:table name="tromems" pagesize="5" class="displaytag" requestURI="${requestURI}" id="row">
 
         <jstl:choose>
-            <jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
-            <jstl:when test="${row.gauge eq '2'}">  <jstl:set var="style" value="background-color: Moccasin; color: black"/> </jstl:when>
-            <jstl:when test="${row.gauge eq '3'}">  <jstl:set var="style" value="background-color: Blue; color: white"/> </jstl:when>
+            <jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: DarkOrange; color: black"/> </jstl:when>
+            <jstl:when test="${row.gauge eq '2'}">  <jstl:set var="style" value="background-color: GreenYellow; color: black"/> </jstl:when>
+            <jstl:when test="${row.gauge eq '3'}">  <jstl:set var="style" value="background-color: DarkRed; color: white"/> </jstl:when>
         </jstl:choose>
 
-        <spring:message code="note.ticker" var="headerTag" />
+        <spring:message code="tromem.ticker" var="headerTag" />
         <display:column property="ticker" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="note.title" var="headerTag" />
+        <spring:message code="tromem.title" var="headerTag" />
         <display:column property="title" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="note.description" var="headerTag" />
+        <spring:message code="tromem.description" var="headerTag" />
         <display:column property="description" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="note.gauge" var="headerTag" />
+        <spring:message code="tromem.gauge" var="headerTag" />
         <display:column property="gauge" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="note.newsPaper" var="headerTag" />
+        <spring:message code="tromem.newsPaper" var="headerTag" />
         <display:column property="newsPaper.title" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="note.displayMoment" var="headerTag" />
+        <spring:message code="tromem.displayMoment" var="headerTag" />
         <display:column property="displayMoment" title="${headerTag}" format="${formatDate}" style="${style}" />
 
 

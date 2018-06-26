@@ -56,8 +56,8 @@
 		<bean class="converters.StringToSubscribeVolumeConverter"/>
 		<bean class="converters.SubscribeNewsPaperToStringConverter"/>
 		<bean class="converters.SubscribeVolumeToStringConverter"/>
-		<bean class="converters.NoteToStringConverter"/>
-		<bean class="converters.StringToNoteConverter"/>
+		<bean class="converters.TromemToStringConverter"/>
+		<bean class="converters.StringToTromemConverter"/>
 
 
 

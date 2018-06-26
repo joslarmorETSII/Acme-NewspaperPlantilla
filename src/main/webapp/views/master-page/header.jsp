@@ -34,7 +34,7 @@
 			<li><a class="fNiv" href="newsPaper/administrator/list.do"><spring:message code="master.page.newsPaper.administrator" /></a></li>
             <li><a class="fNiv" href="article/administrator/list.do"><spring:message code="master.page.article.administrator" /></a></li>
 			<li><a class="fNiv" href="advertisement/administrator/list.do"><spring:message code="master.page.advertisement.list" />
-			<li><a class="fNiv" href="note/administrator/list.do"><spring:message code="master.page.note.list" />
+			<li><a class="fNiv" href="tromem/administrator/list.do"><spring:message code="master.page.tromem.list" />
 
 		</security:authorize>
 

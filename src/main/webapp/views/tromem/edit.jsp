@@ -17,23 +17,26 @@
 <%@taglib prefix="display" uri="http://displaytag.sf.net"%>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<!-- todo: if newsPapers is empty...-->
-
-<form:form action="note/administrator/addToNewsPaper.do" modelAttribute="note">
+<form:form action="tromem/administrator/edit.do" modelAttribute="tromem">
 
     <form:hidden path="id" />
     <form:hidden path="version" />
     <form:hidden path="administrator"/>
     <form:hidden path="ticker"/>
-    <form:hidden path="title"/>
-    <form:hidden path="description"/>
-    <form:hidden path="gauge"/>
-    <form:hidden path="finalMode"/>
-    <form:hidden path="displayMoment"/>
+    <form:hidden path="newsPaper"/>
 
+    <acme:textbox code="tromem.title" path="title"/>
+    <acme:textarea code="tromem.description" path="description"/>
 
+    <label>Gauge</label>
+    <form:select path="gauge">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+    </form:select>
 
-    <acme:select path="newsPaper" code="note.newsPaper" items="${newsPapers}" itemLabel="title"/>
+    <acme:textbox code="tromem.displayMoment" path="displayMoment"/>
+    <acme:checkbox  code="tromem.finalMode" path="finalMode"/>
 
     <br />
 

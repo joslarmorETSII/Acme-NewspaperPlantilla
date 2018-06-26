@@ -36,7 +36,7 @@ public class NewsPaperAdministratorController extends AbstractController {
     private ActorService actorService;
 
     @Autowired
-    private NoteService noteService;
+    private TromemService tromemService;
 
 
 
@@ -111,7 +111,7 @@ public class NewsPaperAdministratorController extends AbstractController {
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
-        result.addObject("notes",noteService.findNotesToDisplay(newsPaperId));
+        result.addObject("tromems",tromemService.findTromemsToDisplay(newsPaperId));
         result.addObject("requestURI","newsPaper/administrator/display.do");
 
         session.setAttribute("cancelUriSession", request.getRequestURI()+ "?newsPaperId=" + newsPaperId);

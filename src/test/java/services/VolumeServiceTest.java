@@ -57,7 +57,7 @@ public class VolumeServiceTest extends AbstractTest{
     /*  FUNCTIONAL REQUIREMENT:
         An actor who is not authenticated must be able to:
             * Create a volume with as many published newspapers as he
-            * or she wishes. Note that the newspapers in a volume can
+            * or she wishes. Tromem that the newspapers in a volume can
             * be added or removed at any time. The same newspaper may
             * be used to create different volumes.
      */
