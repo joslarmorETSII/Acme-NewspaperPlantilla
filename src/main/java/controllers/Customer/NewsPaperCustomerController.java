@@ -47,7 +47,7 @@ public class NewsPaperCustomerController extends AbstractController{
     private SubscribeNewsPaperService subscribeNewsPaperService;
 
     @Autowired
-    private AuditService auditService;
+    private PembasService pembasService;
 
     // Listing  --------------------------------------------------------------
     //Listado de newspaper donde estoy suscrito
@@ -221,8 +221,8 @@ public class NewsPaperCustomerController extends AbstractController{
         ModelAndView result;
         NewsPaper newsPaper;
         Customer customer;
-        Collection<Audit> audits = new ArrayList<>();
-        audits = auditService.AuditForDisplay(newsPaperId);
+        Collection<Pembas> pembass = new ArrayList<>();
+        pembass = pembasService.PembasForDisplay(newsPaperId);
         HttpSession session = request.getSession();
 
 
@@ -235,7 +235,7 @@ public class NewsPaperCustomerController extends AbstractController{
         Assert.isTrue(subscribeNewsPaper!=null || !newsPaper.isModePrivate()|| customer!=null);
 
         result = new ModelAndView("newsPaper/display");
-        result.addObject("audits", audits);
+        result.addObject("pembass", pembass);
         result.addObject("newsPaper", newsPaper);
         result.addObject("cancelURI", "newsPaper/listAll.do");
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));

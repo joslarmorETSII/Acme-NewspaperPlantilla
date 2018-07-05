@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import services.AuditService;
+import services.PembasService;
 import services.NewsPaperService;
 import services.UserService;
 import services.VolumeService;
@@ -39,7 +39,7 @@ public class NewsPaperUserController extends AbstractController {
     private VolumeService volumeService;
 
     @Autowired
-    private AuditService auditService;
+    private PembasService pembasService;
 
     // Constructor --------------------------------------------
 
@@ -203,15 +203,15 @@ public class NewsPaperUserController extends AbstractController {
     public ModelAndView display(@RequestParam final int newsPaperId) {
         ModelAndView result;
         NewsPaper newsPaper= null;
-        Collection<Audit> audits = new ArrayList<>();
+        Collection<Pembas> pembass = new ArrayList<>();
 
-        audits = auditService.AuditForDisplay(newsPaperId );
+        pembass = pembasService.PembasForDisplay(newsPaperId );
         newsPaper = this.newsPaperService.findOne(newsPaperId);
 
         Assert.isTrue(!newsPaper.isModePrivate());
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
-        result.addObject("audits", audits);
+        result.addObject("pembass", pembass);
         result.addObject("cancelURI", "newsPaper/user/list.do");
 
 

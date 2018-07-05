@@ -109,7 +109,7 @@ NewsPaper extends DomainEntity {
     private Collection<SubscribeNewsPaper> subscriptions;
     private Collection<Advertisement> advertisements;
     private Collection<Volume> volumes;
-    private Collection<Audit> audits;
+    private Collection<Pembas> pembass;
 
     @Valid
     @NotNull
@@ -167,11 +167,11 @@ NewsPaper extends DomainEntity {
     @Valid
     @NotNull
     @OneToMany(mappedBy = "newsPaper")
-    public Collection<Audit> getAudits() {
-        return audits;
+    public Collection<Pembas> getPembass() {
+        return pembass;
     }
 
-    public void setAudits(Collection<Audit> audits) {
-        this.audits = audits;
+    public void setPembass(Collection<Pembas> pembass) {
+        this.pembass = pembass;
     }
 }

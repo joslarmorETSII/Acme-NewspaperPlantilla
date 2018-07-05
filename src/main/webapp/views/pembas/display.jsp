@@ -24,26 +24,26 @@
     <jstl:set value="{0,date,yyyy/MM/dd HH:mm}" var="formatDate"/>
 </jstl:if>
 
-<h3><b><spring:message code="audit.title"/>:&nbsp; </b><jstl:out value="${audit.title}"/></h3>
+<h3><b><spring:message code="pembas.title"/>:&nbsp; </b><jstl:out value="${pembas.title}"/></h3>
 
 
-<b><spring:message code="audit.description"/>:&nbsp; </b><jstl:out value="${audit.description}"/>
+<b><spring:message code="pembas.description"/>:&nbsp; </b><jstl:out value="${pembas.description}"/>
 <br/>
 
-<b><spring:message code="audit.ticker"/>:&nbsp; </b><jstl:out value="${audit.ticker}"/>
+<b><spring:message code="pembas.code"/>:&nbsp; </b><jstl:out value="${pembas.code}"/>
 <br/>
 
-<b><spring:message code="audit.gauge"/>:&nbsp; </b><jstl:out value="${audit.gauge}"/>
+<b><spring:message code="pembas.gauge"/>:&nbsp; </b><jstl:out value="${pembas.gauge}"/>
 <br/>
 
 <jstl:if test="${pageContext.response.locale.language == 'es'}">
 
-    <b><spring:message code="audit.moment"/>:&nbsp;</b><fmt:formatDate value="${audit.moment}" pattern="${momentEs}"/>
+    <b><spring:message code="pembas.moment"/>:&nbsp;</b><fmt:formatDate value="${pembas.moment}" pattern="${momentEs}"/>
     <br/>
 </jstl:if>
 
 <jstl:if test="${pageContext.response.locale.language == 'en'}">
-    <b><spring:message code="audit.moment"/>:&nbsp;</b><fmt:formatDate value="${audit.moment}" pattern="${momentEn}"/>
+    <b><spring:message code="pembas.moment"/>:&nbsp;</b><fmt:formatDate value="${pembas.moment}" pattern="${momentEn}"/>
     <br/>
 </jstl:if>
 

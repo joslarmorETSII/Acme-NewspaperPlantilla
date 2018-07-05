@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.AdministratorService;
-import services.AuditService;
+import services.PembasService;
 import services.NewsPaperService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +22,8 @@ import java.util.Date;
 
 
 @Controller
-@RequestMapping("/audit/administrator")
-public class AuditAdministratorController extends AbstractController {
+@RequestMapping("/pembas/administrator")
+public class PembasAdministratorController extends AbstractController {
 
     // Services --------------------------------------------
 
@@ -31,23 +31,23 @@ public class AuditAdministratorController extends AbstractController {
     private AdministratorService administratorService;
 
     @Autowired
-    private AuditService auditService;
+    private PembasService pembasService;
 
     @Autowired
     private NewsPaperService newsPaperService;
 
     // Constructor --------------------------------------------
 
-    public AuditAdministratorController() { super();}
+    public PembasAdministratorController() { super();}
 
     // Creation ------------------------------------------------------
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public ModelAndView create() {
         ModelAndView result;
-        Audit audit= null ;
-        audit = this.auditService.create();
-        result = this.createEditModelAndView(audit);
+        Pembas pembas= null ;
+        pembas = this.pembasService.create();
+        result = this.createEditModelAndView(pembas);
 
         return result;
     }
@@ -57,16 +57,16 @@ public class AuditAdministratorController extends AbstractController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView list() {
         ModelAndView result;
-        Collection<Audit> audits;
+        Collection<Pembas> pembass;
         Administrator administrator = administratorService.findByPrincipal();
 
 
-        result = new ModelAndView("audit/list");
+        result = new ModelAndView("pembas/list");
 
-        audits = administrator.getAudits();
+        pembass = administrator.getPembass();
 
-        result.addObject("audits", audits);
-        result.addObject("requestURI","audit/administrator/list.do");
+        result.addObject("pembass", pembass);
+        result.addObject("requestURI","pembas/administrator/list.do");
 
 
 
@@ -76,67 +76,67 @@ public class AuditAdministratorController extends AbstractController {
     //  Edition ----------------------------------------------------------------
 
     @RequestMapping(value = "/edit", method = RequestMethod.GET)
-    public ModelAndView edit(@RequestParam int auditId) {
+    public ModelAndView edit(@RequestParam int pembasId) {
         final ModelAndView result;
-        Audit audit;
-        audit = this.auditService.findOneToEdit(auditId);
-        Assert.isTrue(!audit.getFinalMode());
-        Assert.notNull(audit);
+        Pembas pembas;
+        pembas = this.pembasService.findOneToEdit(pembasId);
+        Assert.isTrue(!pembas.getFinalMode());
+        Assert.notNull(pembas);
 
-        result = this.createEditModelAndView(audit);
+        result = this.createEditModelAndView(pembas);
         return result;
     }
 
     @RequestMapping(value = "/edit", method = RequestMethod.POST, params = "save")
-    public ModelAndView save(@Valid final  Audit audit, final BindingResult binding) {
+    public ModelAndView save(@Valid final  Pembas pembas, final BindingResult binding) {
         ModelAndView result;
-        auditService.checkMoment(audit.getMoment(),binding);
+        pembasService.checkMoment(pembas.getMoment(),binding);
 
         if (binding.hasErrors())
-            result = this.createEditModelAndView(audit);
+            result = this.createEditModelAndView(pembas);
         else
             try {
-                this.auditService.save(audit);
+                this.pembasService.save(pembas);
                 result = new ModelAndView("redirect:list.do");
             } catch (final Throwable oops) {
-                result = this.createEditModelAndView(audit, "audit.commit.error");
+                result = this.createEditModelAndView(pembas, "pembas.commit.error");
             }
         return result;
     }
     // Add to newspaper ------------------------------------------------------
 
     @RequestMapping(value = "/asociateNewsPaper", method = RequestMethod.GET)
-    public ModelAndView asociateNewsPaper(@RequestParam int auditId) {
+    public ModelAndView asociateNewsPaper(@RequestParam int pembasId) {
         ModelAndView result;
-        Audit audit;
+        Pembas pembas;
 
-        audit = auditService.findOne(auditId);
-        Assert.isTrue(audit.getFinalMode(),"must be on final mode");
-        Assert.isNull(audit.getNewsPaper(),"Assigned to newspaper");
-        result = new ModelAndView("audit/asociateNewsPaper");
-        result.addObject("audit",audit);
+        pembas = pembasService.findOne(pembasId);
+        Assert.isTrue(pembas.getFinalMode(),"must be on final mode");
+        Assert.isNull(pembas.getNewsPaper(),"Assigned to newspaper");
+        result = new ModelAndView("pembas/asociateNewsPaper");
+        result.addObject("pembas",pembas);
         result.addObject("newsPapers", newsPaperService.findPublishedNewsPaper());
 
         return result;
     }
 
     @RequestMapping(value = "/asociateNewsPaper", method = RequestMethod.POST,params = "save")
-    public ModelAndView asociateNewsPaper(@Valid Audit audit, BindingResult binding) {
+    public ModelAndView asociateNewsPaper(@Valid Pembas pembas, BindingResult binding) {
         ModelAndView result;
 
-        auditService.save(audit);
+        pembasService.save(pembas);
         result = new ModelAndView("redirect:list.do");
 
         return result;
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
-    public ModelAndView delete(@RequestParam int auditId){
+    public ModelAndView delete(@RequestParam int pembasId){
         ModelAndView result;
-        Audit audit= auditService.findOne(auditId);
+        Pembas pembas= pembasService.findOne(pembasId);
 
 
-            auditService.delete(audit);
+            pembasService.delete(pembas);
             result = new ModelAndView("redirect:list.do");
 
 
@@ -146,9 +146,9 @@ public class AuditAdministratorController extends AbstractController {
     // Display -------------------------------------------------------------------------
 
     @RequestMapping(value = "/display", method = RequestMethod.GET)
-    public ModelAndView display(@RequestParam final int auditId) {
+    public ModelAndView display(@RequestParam final int pembasId) {
         ModelAndView result;
-        Audit audit;
+        Pembas pembas;
 
         SimpleDateFormat formatterEs;
         SimpleDateFormat formatterEn;
@@ -163,13 +163,13 @@ public class AuditAdministratorController extends AbstractController {
         Administrator administrator = administratorService.findByPrincipal();
 
 
-        audit = this.auditService.findOne(auditId);
-        Assert.notNull(audit);
+        pembas = this.pembasService.findOne(pembasId);
+        Assert.notNull(pembas);
 
 
 
-        result = new ModelAndView("audit/display");
-        result.addObject("audit", audit);
+        result = new ModelAndView("pembas/display");
+        result.addObject("pembas", pembas);
         result.addObject("administrator", administrator);
         result.addObject("cancelUri","welcome/index.do");
         result.addObject("momentEs", momentEs);
@@ -182,25 +182,25 @@ public class AuditAdministratorController extends AbstractController {
 
     // Ancillary methods ------------------------------------------------------
 
-    protected ModelAndView createEditModelAndView(final Audit audit) {
+    protected ModelAndView createEditModelAndView(final Pembas pembas) {
         ModelAndView result;
 
-        result = this.createEditModelAndView(audit, null);
+        result = this.createEditModelAndView(pembas, null);
         return result;
     }
 
-    protected ModelAndView createEditModelAndView(final Audit audit, final String messageCode) {
+    protected ModelAndView createEditModelAndView(final Pembas pembas, final String messageCode) {
         ModelAndView result;
         Administrator administrator = administratorService.findByPrincipal();
 
-        Collection<Audit> audits = administrator.getAudits();
+        Collection<Pembas> pembass = administrator.getPembass();
 
-        result = new ModelAndView("audit/edit");
-        result.addObject("audit", audit);
-        result.addObject("audits", audits);
-        result.addObject("actionUri","audit/administrator/edit.do");
+        result = new ModelAndView("pembas/edit");
+        result.addObject("pembas", pembas);
+        result.addObject("pembass", pembass);
+        result.addObject("actionUri","pembas/administrator/edit.do");
         result.addObject("message", messageCode);
-        result.addObject("cancelUri","audit/administrator/list.do");
+        result.addObject("cancelUri","pembas/administrator/list.do");
 
         return result;
     }

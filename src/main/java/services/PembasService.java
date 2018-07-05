@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.Random;
 
-import domain.Audit;
+import domain.Pembas;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,17 +18,17 @@ import domain.Administrator;
 import domain.NewsPaper;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
-import repositories.AuditRepository;
+import repositories.PembasRepository;
 import security.Authority;
 
 @Service
 @Transactional
-public class AuditService {
+public class PembasService {
 
     // Managed repository -----------------------------------------------------
 
     @Autowired
-    private AuditRepository auditRepository;
+    private PembasRepository pembasRepository;
 
     // Supporting services ----------------------------------------------------
 
@@ -38,86 +38,85 @@ public class AuditService {
 
     // Constructors -----------------------------------------------------------
 
-    public AuditService() {
+    public PembasService() {
         super();
     }
 
     // Simple CRUD methods ----------------------------------------------------
 
-    public Audit create() {
-        Audit audit = null;
+    public Pembas create() {
+        Pembas pembas = null;
 
         final Administrator administrator = this.administratorService.findByPrincipal();
-        audit = new Audit();
-        String ticker= generateTicker();
-        audit.setTicker(ticker);
-        audit.setAdministrator(administrator);
+        pembas = new Pembas();
+        String code= generateCode();
+        pembas.setCode(code);
+        pembas.setAdministrator(administrator);
 
-        return audit;
+        return pembas;
     }
 
-    public Collection<Audit> findAll() {
-        return this.auditRepository.findAll();
+    public Collection<Pembas> findAll() {
+        return this.pembasRepository.findAll();
     }
 
-    public Audit findOne(final int id) {
+    public Pembas findOne(final int id) {
 
-        return this.auditRepository.findOne(id);
+        return this.pembasRepository.findOne(id);
     }
 
-    public Audit save(final Audit audit) {
+    public Pembas save(final Pembas pembas) {
 
-        Audit saved = null;
+        Pembas saved = null;
 
-        Assert.notNull(audit);
-
-        this.checkByPrincipal(audit);
-        saved = this.auditRepository.save(audit);
+        Assert.notNull(pembas);
+        this.checkByPrincipal(pembas);
+        saved = this.pembasRepository.save(pembas);
 
         return saved;
     }
 
-    public void delete(final Audit audit) {
-        Assert.isTrue(checkByPrincipal(audit));
-        this.auditRepository.delete(audit);
+    public void delete(final Pembas pembas) {
+        Assert.isTrue(checkByPrincipal(pembas));
+        this.pembasRepository.delete(pembas);
     }
 
-    public void deleteAll(Collection<Audit> audits){
-        auditRepository.delete(audits);
+    public void deleteAll(Collection<Pembas> pembass){
+        pembasRepository.delete(pembass);
     }
 
-    public Audit findOneToEdit(final Integer auditId) {
+    public Pembas findOneToEdit(final Integer pembasId) {
 
-        final Audit audit = this.auditRepository.findOne(auditId);
-        Assert.isTrue(this.checkByPrincipal(audit));
-        Assert.isTrue(!audit.getFinalMode());
-        return audit;
+        final Pembas pembas = this.pembasRepository.findOne(pembasId);
+        Assert.isTrue(this.checkByPrincipal(pembas));
+        Assert.isTrue(!pembas.getFinalMode());
+        return pembas;
 
     }
 
     // Ancillary methods
 
-    public String generateTicker() {
+    public String generateCode() {
         String letter="";
         String result;
-        Audit audit;
+        Pembas pembas;
         final Random random = new Random();
-        final String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghigklmnopqrst_0123456789";
+        //final String letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghigklmnopqrst_0123456789";
 
         while (true) {
             String string=new SimpleDateFormat("ddMMyy").format(new Date());
             String dd= string.substring(0,2);
             String mm=string.substring(2,4);
             String yy=string.substring(4,6);
-            final int digit5 = random.nextInt(90000) + 10000;
+            final int digit6 = random.nextInt(900000) + 100000;
 
-            for (int i = 0; i < 2; i++) {
-                final int index = (int) (random.nextFloat() * letters.length());
-                letter+= letters.charAt(index);
-            }
-            result=yy+":"+letter+":"+mm+":"+digit5+":"+dd;
-            audit = this.auditRepository.findByTicker(result);
-            if (audit == null)
+           // for (int i = 0; i < 2; i++) {
+              //  final int index = (int) (random.nextFloat() * letters.length());
+               // letter+= letters.charAt(index);
+           // }
+            result=digit6+":"+yy+mm+dd;
+            pembas = this.pembasRepository.findByCode(result);
+            if (pembas == null)
                 break;
         }
 
@@ -125,7 +124,7 @@ public class AuditService {
     }
 
 
-   /* public boolean checkByPrincipal(Audit audit){
+   /* public boolean checkByPrincipal(Pembas pembas){
         Boolean res= false;
         Administrator administrator = administratorService.findByPrincipal();
         if(administrator!=null) {
@@ -137,17 +136,17 @@ public class AuditService {
 
     }*/
 
-   public boolean checkByPrincipal(Audit audit) {
+   public boolean checkByPrincipal(Pembas pembas) {
        Boolean res = false;
        Administrator administrator = administratorService.findByPrincipal();
-       if (administrator.equals(audit.getAdministrator())) {
+       if (administrator.equals(pembas.getAdministrator())) {
            res = true;
        }
        return res;
    }
 
-    public Collection<Audit> AuditForDisplay(int newsPaperId){
-        return auditRepository.AuditForDisplay(newsPaperId);
+    public Collection<Pembas> PembasForDisplay(int newsPaperId){
+        return pembasRepository.PembasForDisplay(newsPaperId);
     }
 
     public boolean checkMoment(Date moment, BindingResult binding) {
@@ -162,15 +161,15 @@ public class AuditService {
             result = true;
         if (!result) {
             codigos = new String[1];
-            codigos[0] = "audit.moment.invalid";
-            error = new FieldError("audit", "moment", moment, false, codigos, null, "Must be in the future");
+            codigos[0] = "pembas.moment.invalid";
+            error = new FieldError("pembas", "moment", moment, false, codigos, null, "Must be in the future");
             binding.addError(error);
         }
         return result;
     }
 
     public void flush() {
-        auditRepository.flush();
+        pembasRepository.flush();
     }
 }
 

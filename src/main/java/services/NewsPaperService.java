@@ -62,7 +62,7 @@ public class NewsPaperService {
     private SubscribeVolumeService subscribeVolumeService;
 
     @Autowired
-    private AuditService auditService;
+    private PembasService pembasService;
 
     // Constructors -----------------------------------------------------------
 
@@ -78,7 +78,7 @@ public class NewsPaperService {
         Collection<Article> articles= new ArrayList<>();
         Collection<Advertisement> advertisements = new ArrayList<>();
         Collection<Volume> volumes = new ArrayList<>();
-        Collection<Audit> audits= new ArrayList<>();
+        Collection<Pembas> pembass= new ArrayList<>();
 
         publisher=userService.findByPrincipal();
         res= new NewsPaper();
@@ -88,7 +88,7 @@ public class NewsPaperService {
         res.setSubscriptions(new ArrayList<SubscribeNewsPaper>());
         res.setAdvertisements(advertisements);
         res.setVolumes(volumes);
-        res.setAudits(audits);
+        res.setPembass(pembass);
         return res;
     }
 
@@ -140,8 +140,8 @@ public class NewsPaperService {
                 this.subscribeVolumeService.deleteCustomerVolume(v1);
             }
         }
-        Collection<Audit> audits= newsPaper.getAudits();
-        auditService.deleteAll(audits);
+        Collection<Pembas> pembass= newsPaper.getPembass();
+        pembasService.deleteAll(pembass);
         this.advertisementService.deleteAll(newsPaper);
         this.volumeService.delete(newsPaper);
         this.articleService.deleteAll(newsPaper.getArticles());

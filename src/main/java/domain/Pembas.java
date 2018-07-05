@@ -24,13 +24,13 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 @Entity
 @Access(AccessType.PROPERTY)
-public class Audit extends DomainEntity {
+public class Pembas extends DomainEntity {
 
     // Constructor -------------------------------------------------------------------
 
     // Attributes --------------------------------------------------------------------
 
-    private String	ticker;
+    private String	code;
     private Integer	gauge;
     private String	title;
     private String	description;
@@ -40,13 +40,13 @@ public class Audit extends DomainEntity {
 
     @Column(unique = true)
     @NotBlank
-    @Pattern(regexp = "^\\d{2}:\\w{2}:\\d{2}:\\d{5}:\\d{2}$")
-    public String getTicker() {
-        return this.ticker;
+    @Pattern(regexp = "^\\d{6}:\\d{2}\\d{2}\\d{2}$")
+    public String getCode() {
+        return this.code;
     }
 
-    public void setTicker(final String ticker) {
-        this.ticker = ticker;
+    public void setCode(final String code) {
+        this.code = code;
     }
     @NotNull
     @Range(min = 1, max = 3)

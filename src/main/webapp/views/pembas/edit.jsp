@@ -17,43 +17,43 @@
 <%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="acme" tagdir="/WEB-INF/tags" %>
 
-<form:form action="${actionUri}" modelAttribute="audit">
+<form:form action="${actionUri}" modelAttribute="pembas">
 
     <form:hidden path="id"/>
     <form:hidden path="version"/>
     <form:hidden path="administrator"/>
     <form:hidden path="newsPaper"/>
-    <form:hidden path="ticker"/>
+    <form:hidden path="code"/>
 
 
-    <acme:textbox path="title" code="audit.title"/>
+    <acme:textbox path="title" code="pembas.title"/>
 
-    <acme:textarea path="description" code="audit.description" />
+    <acme:textarea path="description" code="pembas.description" />
 
-    <form:label path="ticker"><spring:message code="audit.ticker"/>:&nbsp;</form:label>
-    <input value="${audit.ticker}" readonly="readonly"/>
-    <form:errors path="ticker" cssClass="error"/>
+    <form:label path="code"><spring:message code="pembas.code"/>:&nbsp;</form:label>
+    <input value="${pembas.code}" readonly="readonly"/>
+    <form:errors path="code" cssClass="error"/>
     <br/>
 
-    <acme:textbox path="gauge" code="audit.gauge" placeHolder="Range 1-3 points"/>
+    <acme:textbox path="gauge" code="pembas.gauge" placeHolder="Range 1-3 points"/>
 
-    <form:label path="moment"><spring:message code="audit.moment"/></form:label>
+    <form:label path="moment"><spring:message code="pembas.moment"/></form:label>
     <form:input path="moment" placeholder="dd/mm/yyyy hh:mm"/>
     <form:errors path="moment" cssClass="error"/>
     <br/>
 
-    <acme:checkbox path="finalMode" code="audit.finalMode"/>
+    <acme:checkbox path="finalMode" code="pembas.finalMode"/>
 
 
-        <acme:submit name="save" code="audit.save"/>
-
-
-
+        <acme:submit name="save" code="pembas.save"/>
 
 
 
 
-    <input type="button" name="cancel" value="<spring:message code="audit.cancel" />" onclick="javascript: relativeRedir('audit/administrator/list.do');" />
+
+
+
+    <input type="button" name="cancel" value="<spring:message code="pembas.cancel" />" onclick="javascript: relativeRedir('pembas/administrator/list.do');" />
 
 </form:form>
 

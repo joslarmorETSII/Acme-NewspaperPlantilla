@@ -55,29 +55,29 @@
 <br/>
 
 <fieldset>
-    <legend><spring:message code="audit.newsPaperAsociat"></spring:message></legend>
-    <display:table name="audits" id="audit" pagesize="5" class="displaytag" requestURI="audit/list.do">
+    <legend><spring:message code="pembas.newsPaperAsociat"></spring:message></legend>
+    <display:table name="pembass" id="pembas" pagesize="5" class="displaytag" requestURI="pembas/list.do">
 
         <jstl:choose>
-            <jstl:when test="${audit.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
-            <jstl:when test="${audit.gauge eq '2'}">  <jstl:set var="style" value="background-color: Moccasin; color: black"/> </jstl:when>
-            <jstl:when test="${audit.gauge eq '3'}">  <jstl:set var="style" value="background-color: Blue; color: white"/> </jstl:when>
+            <jstl:when test="${pembas.gauge eq '1'}">  <jstl:set var="style" value="background-color: Black; color: white"/> </jstl:when>
+            <jstl:when test="${pembas.gauge eq '2'}">  <jstl:set var="style" value="background-color: PaleVioletRed; color: black"/> </jstl:when>
+            <jstl:when test="${pembas.gauge eq '3'}">  <jstl:set var="style" value="background-color: DeepSkyBlue; color: white"/> </jstl:when>
         </jstl:choose>
 
 
-        <spring:message code="audit.title" var="headerTag" />
+        <spring:message code="pembas.title" var="headerTag" />
         <display:column property="title" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="audit.description" var="headerTag" />
+        <spring:message code="pembas.description" var="headerTag" />
         <display:column property="description" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="audit.gauge" var="headerTag" />
+        <spring:message code="pembas.gauge" var="headerTag" />
         <display:column property="gauge" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="audit.ticker" var="headerTag" />
-        <display:column property="ticker" title="${headerTag}" style="${style}"/>
+        <spring:message code="pembas.code" var="headerTag" />
+        <display:column property="code" title="${headerTag}" style="${style}"/>
 
-        <spring:message var="moment" code="audit.moment"/>
+        <spring:message var="moment" code="pembas.moment"/>
         <spring:message var="formatDate" code="event.format.date"/>
         <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true"  style="${style}" />
 

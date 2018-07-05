@@ -133,10 +133,10 @@
 				<ref bean="notificationbox1"/>
 			</list>
 		</property>
-		<property name="audits">
+		<property name="pembass">
 			<list>
-				<ref bean="audit1" />
-				<ref bean="audit2" />
+				<ref bean="pembas1" />
+				<ref bean="pembas2" />
 			</list>
 		</property>
 	</bean>
@@ -157,10 +157,10 @@
 				<ref bean="notificationbox0"/>
 			</list>
 		</property>
-		<property name="audits">
+		<property name="pembass">
 			<list>
-				<ref bean="audit3" />
-				<ref bean="audit4" />
+				<ref bean="pembas3" />
+				<ref bean="pembas4" />
 			</list>
 		</property>
 	</bean>
@@ -429,9 +429,9 @@
 		<property name="taboo" value="false"/>
 		<property name="modePrivate" value="false"/>
 		<property name="publisher" ref="user1"/>
-		<property name="audits">
+		<property name="pembass">
 			<list>
-				<ref bean="audit1"/>
+				<ref bean="pembas1"/>
 			</list>
 		</property>
 
@@ -467,7 +467,7 @@
 		<property name="taboo" value="false"/>
 		<property name="modePrivate" value="true"/>
 		<property name="publisher" ref="user1"/>
-		<property name="audits">
+		<property name="pembass">
 			<list>
 				<null/>
 			</list>
@@ -505,7 +505,7 @@
 		<property name="taboo" value="true"/>
 		<property name="modePrivate" value="true"/>
 		<property name="publisher" ref="user1"/>
-		<property name="audits">
+		<property name="pembass">
 			<list>
 				<null />
 			</list>
@@ -543,7 +543,7 @@
 		<property name="taboo" value="false"/>
 		<property name="modePrivate" value="false"/>
 		<property name="publisher" ref="user1"/>
-		<property name="audits">
+		<property name="pembass">
 			<list>
 				<null />
 			</list>
@@ -1339,11 +1339,11 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		<property name="actorSender" ref="administrator" />
 	</bean>
 
-	<!-- Audit -->
-	<bean id="audit1" class="domain.Audit">
-		<property name="title" value="audit for newsPaper1"/>
+	<!-- Pembas -->
+	<bean id="pembas1" class="domain.Pembas">
+		<property name="title" value="pembas for newsPaper1"/>
 		<property name="description" value="description1"/>
-		<property name="ticker" value="22:AA:34:12021:07"/>
+		<property name="code" value="123456:190312"/>
 		<property name="moment" value="2019/03/20 10:00"/>
 		<property name="administrator" ref="administrator"/>
 		<property name="gauge" value="1"/>
@@ -1352,10 +1352,10 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 	</bean>
 
 
-	<bean id="audit2" class="domain.Audit">
-		<property name="title" value="audit for newsPaper2"/>
+	<bean id="pembas2" class="domain.Pembas">
+		<property name="title" value="pembas for newsPaper2"/>
 		<property name="description" value="description2"/>
-		<property name="ticker" value="22:AA:34:12022:07"/>
+		<property name="code" value="123456:190313"/>
 		<property name="moment" value="2019/03/20 10:00"/>
 		<property name="administrator" ref="administrator"/>
 		<property name="gauge" value="1"/>
@@ -1364,10 +1364,10 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		</property>
 	</bean>
 
-	<bean id="audit3" class="domain.Audit">
-		<property name="title" value="audit for newsPaper1"/>
+	<bean id="pembas3" class="domain.Pembas">
+		<property name="title" value="pembas for newsPaper1"/>
 		<property name="description" value="description3"/>
-		<property name="ticker" value="22:AA:34:13022:07"/>
+		<property name="code" value="123456:190314"/>
 		<property name="moment" value="2019/03/20 10:00"/>
 		<property name="administrator" ref="administrator2"/>
 		<property name="gauge" value="2"/>
@@ -1376,10 +1376,10 @@ The Osso VR team is currently focused on solving training gaps for orthopedic an
 		</property>
 	</bean>
 
-	<bean id="audit4" class="domain.Audit">
-		<property name="title" value="audit for newsPaper2"/>
+	<bean id="pembas4" class="domain.Pembas">
+		<property name="title" value="pembas for newsPaper2"/>
 		<property name="description" value="description4"/>
-		<property name="ticker" value="22:AA:34:22022:07"/>
+		<property name="code" value="123456:190315"/>
 		<property name="moment" value="2019/03/20 10:00"/>
 		<property name="administrator" ref="administrator2"/>
 		<property name="gauge" value="3"/>

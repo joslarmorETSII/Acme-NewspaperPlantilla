@@ -111,9 +111,9 @@
 		<security:intercept-url pattern="/message/actor/**" access="isAuthenticated()" />
 		<security:intercept-url pattern="/folder/**" access="isAuthenticated()" />
 
-		<!-- Audit -->
-		<security:intercept-url pattern="/audit/administrator/**" access="hasRole('ADMINISTRATOR')" />
-		<security:intercept-url pattern="/audit/**" access="permitAll()" />
+		<!-- Pembas -->
+		<security:intercept-url pattern="/pembas/administrator/**" access="hasRole('ADMINISTRATOR')" />
+		<security:intercept-url pattern="/pembas/**" access="permitAll()" />
 
         <security:intercept-url pattern="/**" access="hasRole('NONE')" />
 

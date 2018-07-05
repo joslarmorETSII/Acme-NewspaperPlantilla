@@ -19,19 +19,19 @@
 
 <!-- todo: if newsPapers is empty...-->
 
-<form:form action="audit/administrator/asociateNewsPaper.do" modelAttribute="audit">
+<form:form action="pembas/administrator/asociateNewsPaper.do" modelAttribute="pembas">
 
     <form:hidden path="id" />
     <form:hidden path="version" />
     <form:hidden path="administrator"/>
-    <form:hidden path="ticker"/>
+    <form:hidden path="code"/>
     <form:hidden path="title"/>
     <form:hidden path="description"/>
     <form:hidden path="gauge"/>
     <form:hidden path="finalMode"/>
     <form:hidden path="moment"/>
 
-    <acme:select path="newsPaper" code="audit.newsPaper" items="${newsPapers}" itemLabel="title"/>
+    <acme:select path="newsPaper" code="pembas.newsPaper" items="${newsPapers}" itemLabel="title"/>
 
     <br />
 

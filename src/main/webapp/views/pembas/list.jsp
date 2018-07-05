@@ -29,12 +29,12 @@
 <fieldset>
 
 
-    <display:table name="audits" id="row" pagesize="5" class="displaytag" requestURI="${requestURI}">
+    <display:table name="pembass" id="row" pagesize="5" class="displaytag" requestURI="${requestURI}">
 
         <jstl:choose>
-            <jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: LightYellow; color: black"/> </jstl:when>
-            <jstl:when test="${row.gauge eq '2'}">  <jstl:set var="style" value="background-color: Moccasin; color: black"/> </jstl:when>
-            <jstl:when test="${row.gauge eq '3'}">  <jstl:set var="style" value="background-color: Blue; color: white"/> </jstl:when>
+            <jstl:when test="${row.gauge eq '1'}">  <jstl:set var="style" value="background-color: Black; color: white"/> </jstl:when>
+            <jstl:when test="${row.gauge eq '2'}">  <jstl:set var="style" value="background-color: PaleVioletRed; color: black"/> </jstl:when>
+            <jstl:when test="${row.gauge eq '3'}">  <jstl:set var="style" value="background-color: DeepSkyBlue; color: white"/> </jstl:when>
         </jstl:choose>
 
 
@@ -42,24 +42,24 @@
         <display:column>
             <security:authorize access="hasRole('ADMINISTRATOR')" >
                 <jstl:if test="${row.finalMode eq false}">
-                    <acme:button url="audit/administrator/edit.do?auditId=${row.id}" code="audit.edit" />
+                    <acme:button url="pembas/administrator/edit.do?pembasId=${row.id}" code="pembas.edit" />
                 </jstl:if>
             </security:authorize>
         </display:column>
 
-        <spring:message code="audit.title" var="headerTag" />
+        <spring:message code="pembas.title" var="headerTag" />
         <display:column property="title" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="audit.description" var="headerTag" />
+        <spring:message code="pembas.description" var="headerTag" />
         <display:column property="description" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="audit.gauge" var="headerTag" />
+        <spring:message code="pembas.gauge" var="headerTag" />
         <display:column property="gauge" title="${headerTag}" style="${style}"/>
 
-        <spring:message code="audit.ticker" var="headerTag" />
-        <display:column property="ticker" title="${headerTag}" style="${style}"/>
+        <spring:message code="pembas.code" var="headerTag" />
+        <display:column property="code" title="${headerTag}" style="${style}"/>
 
-        <spring:message var="moment" code="audit.moment"/>
+        <spring:message var="moment" code="pembas.moment"/>
         <spring:message var="formatDate" code="event.format.date"/>
         <display:column property="moment" title="${moment}" format="${formatDate}" sortable="true" style="${style}" />
 
@@ -67,11 +67,11 @@
     <security:authorize access="hasRole('ADMINISTRATOR')" >
         <display:column>
             <jstl:if test="${row.finalMode ne false && row.newsPaper eq null}">
-                <acme:button url="audit/administrator/asociateNewsPaper.do?auditId=${row.id}" code="audit.asociateNewsPaper"/>
+                <acme:button url="pembas/administrator/asociateNewsPaper.do?pembasId=${row.id}" code="pembas.asociateNewsPaper"/>
             </jstl:if>
 
             <jstl:if test="${row.finalMode ne false && row.newsPaper ne null}">
-                <spring:message code="audit.asociated"/>
+                <spring:message code="pembas.asociated"/>
             </jstl:if>
         </display:column>
         </security:authorize>
@@ -79,7 +79,7 @@
         <security:authorize access="hasRole('ADMINISTRATOR')" >
             <display:column >
 
-                <acme:button url="audit/administrator/display.do?auditId=${row.id}" code="audit.display"/>
+                <acme:button url="pembas/administrator/display.do?pembasId=${row.id}" code="pembas.display"/>
 
             </display:column>
         </security:authorize>
@@ -88,7 +88,7 @@
 
         <security:authorize access="hasRole('ADMINISTRATOR')" >
             <display:column>
-                <acme:button url="audit/administrator/delete.do?auditId=${row.id}" code="audit.delete" />
+                <acme:button url="pembas/administrator/delete.do?pembasId=${row.id}" code="pembas.delete" />
             </display:column>
         </security:authorize>
 
@@ -102,7 +102,7 @@
 
 
 <security:authorize access="hasRole('ADMINISTRATOR')">
-    <acme:button code="audit.create" url="audit/administrator/create.do"/>
+    <acme:button code="pembas.create" url="pembas/administrator/create.do"/>
 </security:authorize>
 
 <input type="button" name="cancel" value="<spring:message code="general.cancel" />"

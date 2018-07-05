@@ -1,7 +1,7 @@
 package controllers;
 
 
-import domain.Audit;
+import domain.Pembas;
 import domain.NewsPaper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.ActorService;
 import services.AdministratorService;
-import services.AuditService;
+import services.PembasService;
 import services.NewsPaperService;
 
 import java.util.Collection;
 
 @Controller
-@RequestMapping("/audit")
-public class AuditController extends AbstractController {
+@RequestMapping("/pembas")
+public class PembasController extends AbstractController {
 
     // Services --------------------------------------------
 
@@ -26,14 +26,14 @@ public class AuditController extends AbstractController {
     private ActorService actorService;
 
     @Autowired
-    private AuditService auditService;
+    private PembasService pembasService;
 
     @Autowired
     private NewsPaperService newsPaperService;
 
     // Constructor --------------------------------------------
 
-    public AuditController() { super();}
+    public PembasController() { super();}
 
 
 
@@ -43,15 +43,15 @@ public class AuditController extends AbstractController {
     @RequestMapping(value = "/list", method = RequestMethod.GET)
     public ModelAndView list(@RequestParam int newsPaperId) {
         ModelAndView result;
-        Collection<Audit> audits;
+        Collection<Pembas> pembass;
         NewsPaper newsPaper= newsPaperService.findOne(newsPaperId);
 
         result = new ModelAndView("newsPaper/display");
 
-        audits = auditService.AuditForDisplay(newsPaperId);
+        pembass = pembasService.PembasForDisplay(newsPaperId);
 
-        result.addObject("audits", audits);
-        result.addObject("requestURI","audit/list.do");
+        result.addObject("pembass", pembass);
+        result.addObject("requestURI","pembas/list.do");
         result.addObject("newsPaper",newsPaper);
 
         return result;

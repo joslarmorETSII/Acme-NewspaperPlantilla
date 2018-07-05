@@ -1,27 +1,27 @@
 package converters;
 
 
-import domain.Audit;
+import domain.Pembas;
 import domain.NewsPaper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
-import repositories.AuditRepository;
+import repositories.PembasRepository;
 import repositories.NewsPaperRepository;
 
 import javax.transaction.Transactional;
 
 @Component
 @Transactional
-public class StringToAuditConverter implements Converter<String, Audit>{
+public class StringToPembasConverter implements Converter<String, Pembas>{
 
 @Autowired
-AuditRepository auditRepository;
+PembasRepository pembasRepository;
 
 	@Override
-	public Audit convert(String text) {
-		Audit result;
+	public Pembas convert(String text) {
+		Pembas result;
 		int id;
 		
 		try{
@@ -29,7 +29,7 @@ AuditRepository auditRepository;
 				result = null;
 			}else{
 				id = Integer.valueOf(text);
-				result = auditRepository.findOne(id);
+				result = pembasRepository.findOne(id);
 			}
 		}catch(Throwable oops){
 			throw new IllegalArgumentException(oops);

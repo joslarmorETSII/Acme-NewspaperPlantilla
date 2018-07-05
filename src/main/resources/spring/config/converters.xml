@@ -56,8 +56,8 @@
 		<bean class="converters.StringToSubscribeVolumeConverter"/>
 		<bean class="converters.SubscribeNewsPaperToStringConverter"/>
 		<bean class="converters.SubscribeVolumeToStringConverter"/>
-		<bean class="converters.AuditToStringConverter"/>
-		<bean class="converters.StringToAuditConverter"/>
+		<bean class="converters.PembasToStringConverter"/>
+		<bean class="converters.StringToPembasConverter"/>
 
 
 	</util:list>

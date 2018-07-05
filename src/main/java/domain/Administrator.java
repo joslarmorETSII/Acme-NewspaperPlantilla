@@ -18,17 +18,17 @@ public class Administrator extends Actor {
 
     // Relationships ----------------------------------------------------------------------
 
-    private Collection<Audit> audits;
+    private Collection<Pembas> pembass;
 
 
     @NotNull
     @Valid
     @OneToMany(mappedBy = "administrator")
-    public Collection<Audit> getAudits() {
-        return audits;
+    public Collection<Pembas> getPembass() {
+        return pembass;
     }
 
-    public void setAudits(Collection<Audit> audits) {
-        this.audits = audits;
+    public void setPembass(Collection<Pembas> pembass) {
+        this.pembass = pembass;
     }
 }

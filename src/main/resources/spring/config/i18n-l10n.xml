@@ -38,7 +38,7 @@
 		<value>/views/folder/messages</value>
 		<value>/views/message/messages</value>
 		<value>/views/advertisement/messages</value>
-		<value>/views/audit/messages</value>
+		<value>/views/pembas/messages</value>
 
 	</util:list>
 

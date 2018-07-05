@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import services.AdvertisementService;
 import services.AgentService;
-import services.AuditService;
+import services.PembasService;
 import services.NewsPaperService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -35,7 +35,7 @@ public class NewsPaperAgentController extends AbstractController {
     private AgentService agentService;
 
     @Autowired
-    private AuditService auditService;
+    private PembasService pembasService;
 
     public NewsPaperAgentController() { super();}
 
@@ -65,12 +65,12 @@ public class NewsPaperAgentController extends AbstractController {
         NewsPaper newsPaper;
         newsPaper = this.newsPaperService.findOne(newsPaperId);
 
-        Collection<Audit> audits = new ArrayList<>();
-        audits = auditService.AuditForDisplay(newsPaperId);
+        Collection<Pembas> pembass = new ArrayList<>();
+        pembass = pembasService.PembasForDisplay(newsPaperId);
 
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
-        result.addObject("audits", audits);
+        result.addObject("pembass", pembass);
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
 
 

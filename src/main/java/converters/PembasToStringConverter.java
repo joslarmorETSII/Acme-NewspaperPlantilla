@@ -1,7 +1,7 @@
 package converters;
 
 
-import domain.Audit;
+import domain.Pembas;
 import domain.NewsPaper;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
@@ -10,16 +10,16 @@ import javax.transaction.Transactional;
 
 @Component
 @Transactional
-public class AuditToStringConverter implements Converter<Audit, String>{
+public class PembasToStringConverter implements Converter<Pembas, String>{
 
 	@Override
-	public String convert(Audit audit) {
+	public String convert(Pembas pembas) {
 		
 		String result;
-		if(audit == null){
+		if(pembas == null){
 			result = null;
 		}else{
-			result = String.valueOf(audit.getId());
+			result = String.valueOf(pembas.getId());
 		}
 		return result;
 	}

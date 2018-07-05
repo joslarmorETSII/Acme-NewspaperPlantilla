@@ -37,7 +37,7 @@ public class NewsPaperAdministratorController extends AbstractController {
     private ActorService actorService;
 
     @Autowired
-    private AuditService auditService;
+    private PembasService pembasService;
 
     // Constructor --------------------------------------------
 
@@ -98,10 +98,10 @@ public class NewsPaperAdministratorController extends AbstractController {
     public ModelAndView display(@RequestParam int newsPaperId, HttpServletRequest request) {
         ModelAndView result;
         NewsPaper newsPaper;
-        Collection<Audit> audits = new ArrayList<>();
+        Collection<Pembas> pembass = new ArrayList<>();
 
         newsPaper = this.newsPaperService.findOne(newsPaperId);
-        audits = this.auditService.AuditForDisplay(newsPaperId);
+        pembass = this.pembasService.PembasForDisplay(newsPaperId);
 
         Actor actor=actorService.findByPrincipal();
         Administrator admin = administratorService.findByPrincipal();
@@ -111,7 +111,7 @@ public class NewsPaperAdministratorController extends AbstractController {
 
         result = new ModelAndView("newsPaper/display");
         result.addObject("newsPaper", newsPaper);
-        result.addObject("audits", audits);
+        result.addObject("pembass", pembass);
         result.addObject("cancelUriSession", request.getSession().getAttribute("cancelUriSession"));
 
         session.setAttribute("cancelUriSession", request.getRequestURI()+ "?newsPaperId=" + newsPaperId);
